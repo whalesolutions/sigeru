@@ -66,6 +66,7 @@
     </header>
 
     <main>
+      <!-- Seccion Hero -->
       <section class="hero">
         <div class="hero-content">
           <h1>Bienvenido a mi sitio</h1>
@@ -146,40 +147,163 @@
         </div>
       </section>
 
-      <section class="clasificacion">
-        <h2>¿Qué es la clasificación de residuos?</h2>
-        <div class="clasificacion-contenedor">
-          <div class="clasificacion-img">
-            <img
-              src="assets/images/clasificacion.png"
-              alt="Clasificación de residuos" />
+      <!-- Bienvenida al sistema -->
+      <section class="bg-light py-5">
+        <section class="clasificacion">
+          <h2>¿Qué es la clasificación de residuos?</h2>
+          <div class="clasificacion-contenedor">
+            <div class="clasificacion-img">
+              <img
+                src="assets/images/clasificacion.png"
+                alt="Clasificación de residuos" />
+            </div>
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="card h-100 text-center">
+                  <div class="card-body">
+                    <h4> Reclamos rápidos</h4>
+                      <p>
+                        Registrá reclamos de forma sencilla y recibí un número
+                        de seguimiento para consultar su estado.
+                      </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card h-100 text-center">
+                  <div class="card-body">
+                    <h4>Información actualizada</h4>
+                      <p>
+                        Consultá los días de recolección, ubicación de
+                        contenedores y avisos importantes del servicio.
+                      </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card h-100 text-center">
+                  <div class="card-body">
+                    <h4> Cuidado del ambiente</h4>
+                      <p>
+                        Accedé a recomendaciones sobre clasificación de residuos
+                        y colaborá con una ciudad más limpia y sostenible.
+                      </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Explicacion de Clasificacion de residuos -->
+        <section class="guia-residuos container py-5">
+          <h2 class="text-center mb-4">
+            Guía de clasificación de residuos
+          </h2>
+          <p class="text-center text-muted mb-5">
+              Separá correctamente los residuos para mejorar la recolección y contribuir al cuidado del medio ambiente.
+          </p>
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <img
+                src="assets/images/clasificacion.png"
+                class="img-fluid rounded guia-imagen"
+                alt="Clasificación de residuos">
+            </div>
+            <div class="col-md-6">
+              <div class="tipo-residuo">
+                <h5 class="tipo-residuo-titulo papel">
+                  <span class="circulo"></span>
+                    Azul - Papel y cartón
+                </h5>
+                <p>
+                Hojas, cuadernos, diarios, revistas y cajas de cartón limpias.
+                </p>
+              </div>
+              <div class="tipo-residuo">
+                <h5 class="tipo-residuo-titulo vidrio">
+                  <span class="circulo"></span>
+                    Verde - Vidrio
+                </h5>
+                <p>
+                Botellas, frascos y envases de vidrio limpios.
+                </p>
+              </div>
+              <div class="tipo-residuo">
+                <h5 class="tipo-residuo-titulo plastico">
+                  <span class="circulo"></span>
+                  Amarillo - Plásticos
+                </h5>
+                <p>
+                  Botellas plásticas, envases, bolsas y recipientes limpios.
+                </p>
+              </div>
+              <div class="tipo-residuo">
+                <h5 class="tipo-residuo-titulo organico">
+                  <span class="circulo"></span>
+                  Negro - Orgánicos
+                </h5>
+                <p>
+                  Restos de comida, yerba, hojas y residuos biodegradables.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Estadisticas del funcionamiento de la paltaforma -->
+      <section class="impacto py-5 bg-light">
+
+          <div class="container text-center">
+
+              <h2 class="mb-4">Impacto del sistema</h2>
+
+              <p class="text-muted mb-5">
+                  SiGeRU mejora la gestión de residuos en la ciudad todos los días.
+              </p>
+
+              <div class="row g-4">
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero azul">1.250+</h1>
+                              <p class="mb-0">Reclamos registrados</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero verde">980+</h1>
+                              <p class="mb-0">Reclamos resueltos</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero amarillo">85%</h1>
+                              <p class="mb-0">Satisfacción ciudadana</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero rojo">24h</h1>
+                              <p class="mb-0">Tiempo promedio de respuesta</p>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
           </div>
 
-          <div class="clasificacion-text">
-            <p>
-              La clasificación de residuos consiste en separar los desechos
-              según su origen y sus características para facilitar su reciclaje,
-              reutilización o disposición final de manera responsable.
-            </p>
-            <p>
-              Una correcta separación contribuye a reducir la contaminación,
-              proteger los recursos naturales y fomentar una cultura de cuidado
-              del medio ambiente.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h2>Bienvenido al Sistema de Administración y Reclamos de Residuos</h2>
-        <p>
-          Este portal fue creado para facilitar la comunicación entre los
-          ciudadanos y el servicio de gestión de residuos. Desde aquí podrás
-          registrar reclamos, realizar el seguimiento de cada solicitud,
-          consultar información sobre los días de recolección y acceder a
-          recomendaciones para una correcta separación y disposición de los
-          residuos.
-        </p>
       </section>
       <!-- Accesos rápidos -->
       <section>
@@ -197,6 +321,7 @@
           <p>Calendario de recolección</p>
         </div>
       </section>
+
       <!-- Noticias -->
       <section>
         <h2>Noticias destacadas</h2>
@@ -317,7 +442,6 @@
               >&copy; 2026 SiGeRU</span
             >
           </div>
-
           <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li class="ms-3">
               <a
@@ -337,7 +461,6 @@
                     d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" /></svg
               ></a>
             </li>
-
             <li class="ms-3">
               <a
                 class="text-body-secondary"
@@ -375,7 +498,6 @@
               ></a>
             </li>
           </ul>
-        </footer>
       </div>
       <div class="b-example-divider"></div>
     </footer>
