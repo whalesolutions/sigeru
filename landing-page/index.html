@@ -501,8 +501,94 @@
             </div>
 
         </section>
+        <!-- Reclamos -->
+      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+          <div class="row">
+            <div class="col">
+              <label for="nombre" class="form-label">Nombre y apellido</label>
+              <input
+                type="text"
+                class="form-control"
+                aria-label="nombre"
+                required />
+            </div>
+            <div class="col">
+              <label for="celular" class="form-label">Número de celular</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="celular"
+                name="celular"
+                placeholder="+598 99 123 456" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="contenedor" class="form-label"
+                  >Id de contenedor</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="contenedor"
+                  aria-describedby="contenedorHelp"
+                  required />
+                <div id="contenedorHelp" class="form-text">
+                  El número se encuentra en la etiqueta del contenedor.
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3">
+                <label for="tipoDeIncidencia" class="form-label"
+                  >Tipo de incidencia</label
+                >
+                <select id="tipoDeIncidencia" class="form-select">
+                  <option selected disabled>Seleccione una opción</option>
+                  <option>Contenedor lleno</option>
+                  <option>Contenedor desbordado</option>
+                  <option>Contenedor dañado</option>
+                  <option>Basura alrededor del contenedor</option>
+                  <option>Recolección no realizada</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label for="descripcionReclamo" class="form-label"
+                  >Comentario</label
+                >
+                <textarea
+                  class="form-control"
+                  id="descripcionReclamo"
+                  rows="3"
+                  placeholder="Describe brevemente el problema"></textarea>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="checkNotificacion" />
+                <label class="form-check-label" for="checkNotificacion"
+                  >Deseo recibir una notificacion al resolverse
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Enviar reclamo
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </main>
-    <footer>
       <div class="container">
         <footer
           class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
