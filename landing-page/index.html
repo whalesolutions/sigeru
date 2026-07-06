@@ -1,540 +1,520 @@
 <!doctype html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Landing Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css"/>
-    <link rel="stylesheet" href="assets/images/"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="assets/images/" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-  </head>
-  <body>
-    <header class="hero-wrapper">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
-          <div class="container">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+</head>
 
-              <!-- Logo -->
-              <a class="navbar-brand" href="#">
-                  <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
-                      alt="Logo SiGeRU"
-                      width="30"
-                      height="24">
-              </a>
+<body>
+    <header class="hero">
+        <nav class="navbar fixed-top">
+            <div class="container">
+                
+                <!--Logo-->
+                <a class="navbar-brand" href="#">
+                    <img
+                        src="./assets/images/SiGeRU.png"
+                        alt="Logo SiGeRU"
+                        height="48">
+                </a>
 
-              <!-- Menú centrado -->
-              <div class="mx-auto">
-                  <ul class="navbar-nav flex-row gap-4">
-                      <li class="nav-item">
-                          <a class="nav-link active" href="#">
-                              Inicio
-                          </a>
-                      </li>
-
-                      <li class="nav-item">
-                          <a class="nav-link" href="#quienes-somos">
+                <!--Menu-->
+                <ul class="navbar-nav flex-row gap-4 mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#quienes-somos">
                             ¿Quiénes somos?
-                          </a>
-                      </li>
-
-                      <li class="nav-item">
-                          <a class="nav-link" href="#beneficios">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#beneficios">
                             Beneficios
-                          </a>
-                      </li>
-
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
                             Reclamos
-                          </a>
-                      </li>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Contacto
+                        </a>
+                    </li>
+                </ul>
 
-                      <li class="nav-item">
-                          <a class="nav-link" href="#">
-                              Contacto
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-
-              <!-- CTA derecha -->
-              <div>
-                  <button type="button" class="btn btn-outline-primary">
-                      Acceder
-                  </button>
-              </div>
-          </div>
-      </nav>
+                <!--Login -->
+                <button class="btn btn-outline-primary">
+                    Acceder
+                </button>
+            </div>
+        </nav>
+        <!--Hero-->
+        <section class="hero-content">
+            <div class="container">
+                <h1>Sistema de Gestión de Residuos Urbanos</h1>
+                <p>Un proyecto web en desarrollo paso a paso</p>
+                <button class="btn btn-outline-primary">Explorar</button>
+            </div>
+        </section>
     </header>
 
     <main>
-      <!-- Seccion Hero -->
-      <section class="hero">
-        <div class="hero-content">
-          <h1>Bienvenido a mi sitio</h1>
-          <p>Un proyecto web en desarrollo paso a paso</p>
-          <a href="#carrusel" class="btn">Explorar</a>
-        </div>
-      </section>
-      <!-- Carrusel de imagenes  -->
-      <section class="carrusel" id="carrusel">
-        <div class="carrusel-track">
-          <img
-            src="assets/images/sacar-residuos-contenedor.jpeg"
-            alt="Tirando residuos al contenedor"
-            title="Tirando residuos al contenedor"/>
-          <img
-            src="assets/images/camion.jpg"
-            alt="Camion de basura"
-            title="Camion de basura"/>
-          <img
-            src="assets/images/recogida-selectiva.jpg"
-            alt="Contenedores de basura selectiva"
-            title="Contenedores de basura selectiva"/>
-          <img
-            src="assets/images/bolsa-de-residuo.jpeg"
-            alt="Bolsa de residuo"
-            title="Bolsa de residuo" />
-          <img
-            src="assets/images/reciclaje.jpg"
-            alt="Reciclaje"
-            title="Reciclaje"/>
+        <!--Carrusel de imagenes-->
+        <section class="carrusel" id="carrusel">
+            <div class="carrusel-track">
+                <img src="assets/images/sacar-residuos-contenedor.jpeg" alt="Tirando residuos al contenedor"
+                    title="Tirando residuos al contenedor" />
+                <img src="assets/images/camion.jpg" alt="Camion de basura" title="Camion de basura" />
+                <img src="assets/images/recogida-selectiva.jpg" alt="Contenedores de basura selectiva"
+                    title="Contenedores de basura selectiva" />
+                <img src="assets/images/bolsa-de-residuo.jpeg" alt="Bolsa de residuo" title="Bolsa de residuo" />
+                <img src="assets/images/reciclaje.jpg" alt="Reciclaje" title="Reciclaje" />
 
-      </section>
-      <!-- Bienvenida al sistema -->
-      <section class="bg-light py-5">
+        </section>
+        <!-- Bienvenida al sistema -->
+        <section class="bg-light py-5">
 
-        <div class="container text-center">
+            <div class="container text-center">
 
-          <h2 class="mb-3">Bienvenido al Sistema de Gestión de Residuos</h2>
+                <h2 class="mb-3">Bienvenido al Sistema de Gestión de Residuos</h2>
 
-          <p class="lead text-muted">
-            Este sistema permite registrar reclamos, realizar seguimiento y mejorar la gestión ambiental de la ciudad.
-          </p>
+                <p class="lead text-muted">
+                    Este sistema permite registrar reclamos, realizar seguimiento y mejorar la gestión ambiental de la
+                    ciudad.
+                </p>
 
-        </div>
+            </div>
 
-      </section>
-      <!-- Breve explicacion de quienes somos -->
-      <section id="quienes-somos" class="container py-5">
-          <div class="row align-items-center">
+        </section>
+        <!-- Breve explicacion de quienes somos -->
+        <section id="quienes-somos" class="container py-5">
+            <div class="row align-items-center">
 
-              <div class="col-md-6">
-                  <img src="https://media.subrayado.com.uy/p/bd12b19d0b4c6cfacc3e03049bed7513/adjuntos/230/videos/003/357/0003357843/cosse-limpieza-municipio-ch.jpg"
-                      class="img-fluid rounded"
-                      alt="Equipo de gestión de residuos">
-              </div>
+                <div class="col-md-6">
+                    <img src="https://media.subrayado.com.uy/p/bd12b19d0b4c6cfacc3e03049bed7513/adjuntos/230/videos/003/357/0003357843/cosse-limpieza-municipio-ch.jpg"
+                        class="img-fluid rounded" alt="Equipo de gestión de residuos">
+                </div>
 
-              <div class="col-md-6">
-                  <h2>¿Quiénes somos?</h2>
+                <div class="col-md-6">
+                    <h2>¿Quiénes somos?</h2>
 
-                  <p>
-                      Somos un sistema dedicado a mejorar la gestión de residuos y
-                      fortalecer la comunicación entre los ciudadanos y el municipio.
-                      Nuestro objetivo es brindar una plataforma sencilla, rápida y
-                      transparente para realizar reclamos, consultar información y
-                      promover buenas prácticas ambientales.
-                  </p>
+                    <p>
+                        Somos un sistema dedicado a mejorar la gestión de residuos y
+                        fortalecer la comunicación entre los ciudadanos y el municipio.
+                        Nuestro objetivo es brindar una plataforma sencilla, rápida y
+                        transparente para realizar reclamos, consultar información y
+                        promover buenas prácticas ambientales.
+                    </p>
 
-                  <p>
-                      A través de SiGeRU buscamos contribuir a una ciudad más limpia,
-                      fomentando la participación ciudadana y facilitando el acceso a
-                      los servicios relacionados con la recolección y disposición de
-                      residuos.
-                  </p>
-              </div>
+                    <p>
+                        A través de SiGeRU buscamos contribuir a una ciudad más limpia,
+                        fomentando la participación ciudadana y facilitando el acceso a
+                        los servicios relacionados con la recolección y disposición de
+                        residuos.
+                    </p>
+                </div>
 
-          </div>
-      </section>
-      
-      <section id="beneficios" class="container py-5">
+            </div>
+        </section>
 
-          <div class="text-center mb-5">
-              <h2>Beneficios</h2>
-              <p>Con SiGeRU tendrás acceso a herramientas que facilitan la gestión de residuos.</p>
-          </div>
+        <section id="beneficios" class="container py-5">
 
-          <div class="row g-4">
+            <div class="text-center mb-5">
+                <h2>Beneficios</h2>
+                <p>Con SiGeRU tendrás acceso a herramientas que facilitan la gestión de residuos.</p>
+            </div>
 
-              <div class="col-md-4">
-                  <div class="card h-100 text-center">
-                      <div class="card-body">
-                          <h4> Reclamos rápidos</h4>
-                          <p>
-                              Registrá reclamos de forma sencilla y recibí un número
-                              de seguimiento para consultar su estado.
-                          </p>
-                      </div>
-                  </div>
-              </div>
+            <div class="row g-4">
 
-              <div class="col-md-4">
-                  <div class="card h-100 text-center">
-                      <div class="card-body">
-                          <h4>Información actualizada</h4>
-                          <p>
-                              Consultá los días de recolección, ubicación de
-                              contenedores y avisos importantes del servicio.
-                          </p>
-                      </div>
-                  </div>
-              </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <h4> Reclamos rápidos</h4>
+                            <p>
+                                Registrá reclamos de forma sencilla y recibí un número
+                                de seguimiento para consultar su estado.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-              <div class="col-md-4">
-                  <div class="card h-100 text-center">
-                      <div class="card-body">
-                          <h4> Cuidado del ambiente</h4>
-                          <p>
-                              Accedé a recomendaciones sobre clasificación de residuos
-                              y colaborá con una ciudad más limpia y sostenible.
-                          </p>
-                      </div>
-                  </div>
-              </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <h4>Información actualizada</h4>
+                            <p>
+                                Consultá los días de recolección, ubicación de
+                                contenedores y avisos importantes del servicio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-          </div>
+                <div class="col-md-4">
+                    <div class="card h-100 text-center">
+                        <div class="card-body">
+                            <h4> Cuidado del ambiente</h4>
+                            <p>
+                                Accedé a recomendaciones sobre clasificación de residuos
+                                y colaborá con una ciudad más limpia y sostenible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      </section>
-      
         <!-- Explicacion de Clasificacion de residuos -->
-      <section class="guia-residuos container py-5">
+        <section class="guia-residuos container py-5">
 
-          <h2 class="text-center mb-4">
-              Guía de clasificación de residuos
-          </h2>
+            <h2 class="text-center mb-4">
+                Guía de clasificación de residuos
+            </h2>
 
-          <p class="text-center text-muted mb-5">
-              Separá correctamente los residuos para mejorar la recolección y contribuir al cuidado del medio ambiente.
-          </p>
+            <p class="text-center text-muted mb-5">
+                Separá correctamente los residuos para mejorar la recolección y contribuir al cuidado del medio
+                ambiente.
+            </p>
 
-          <div class="row align-items-center">
+            <div class="row align-items-center">
 
-              <div class="col-md-6">
+                <div class="col-md-6">
 
-                  <img
-                      src="assets/images/clasificacion.png"
-                      class="img-fluid rounded guia-imagen"
-                      alt="Clasificación de residuos">
+                    <img src="assets/images/clasificacion.png" class="img-fluid rounded guia-imagen"
+                        alt="Clasificación de residuos">
 
-              </div>
+                </div>
 
-              <div class="col-md-6">
+                <div class="col-md-6">
 
-                  <div class="tipo-residuo">
+                    <div class="tipo-residuo">
 
-                      <h5 class="tipo-residuo-titulo papel">
-                          <span class="circulo"></span>
-                          Azul - Papel y cartón
-                      </h5>
+                        <h5 class="tipo-residuo-titulo papel">
+                            <span class="circulo"></span>
+                            Azul - Papel y cartón
+                        </h5>
 
-                      <p>
-                          Hojas, cuadernos, diarios, revistas y cajas de cartón limpias.
-                      </p>
+                        <p>
+                            Hojas, cuadernos, diarios, revistas y cajas de cartón limpias.
+                        </p>
 
-                  </div>
+                    </div>
 
-                  <div class="tipo-residuo">
+                    <div class="tipo-residuo">
 
-                      <h5 class="tipo-residuo-titulo vidrio">
-                          <span class="circulo"></span>
-                          Verde - Vidrio
-                      </h5>
+                        <h5 class="tipo-residuo-titulo vidrio">
+                            <span class="circulo"></span>
+                            Verde - Vidrio
+                        </h5>
 
-                      <p>
-                          Botellas, frascos y envases de vidrio limpios.
-                      </p>
+                        <p>
+                            Botellas, frascos y envases de vidrio limpios.
+                        </p>
 
-                  </div>
+                    </div>
 
-                  <div class="tipo-residuo">
+                    <div class="tipo-residuo">
 
-                      <h5 class="tipo-residuo-titulo plastico">
-                          <span class="circulo"></span>
-                          Amarillo - Plásticos
-                      </h5>
+                        <h5 class="tipo-residuo-titulo plastico">
+                            <span class="circulo"></span>
+                            Amarillo - Plásticos
+                        </h5>
 
-                      <p>
-                          Botellas plásticas, envases, bolsas y recipientes limpios.
-                      </p>
+                        <p>
+                            Botellas plásticas, envases, bolsas y recipientes limpios.
+                        </p>
 
-                  </div>
+                    </div>
 
-                  <div class="tipo-residuo">
+                    <div class="tipo-residuo">
 
-                      <h5 class="tipo-residuo-titulo organico">
-                          <span class="circulo"></span>
-                          Negro - Orgánicos
-                      </h5>
+                        <h5 class="tipo-residuo-titulo organico">
+                            <span class="circulo"></span>
+                            Negro - Orgánicos
+                        </h5>
 
-                      <p>
-                          Restos de comida, yerba, hojas y residuos biodegradables.
-                      </p>
+                        <p>
+                            Restos de comida, yerba, hojas y residuos biodegradables.
+                        </p>
 
-                  </div>
+                    </div>
 
-              </div>
+                </div>
 
-          </div>
+            </div>
 
-      </section>
+        </section>
 
         <!-- Estadisticas del funcionamiento de la paltaforma -->
-      <section class="impacto py-5 bg-light">
+        <section class="impacto py-5 bg-light">
 
-          <div class="container text-center">
+            <div class="container text-center">
 
-              <h2 class="mb-4">Impacto del sistema</h2>
+                <h2 class="mb-4">Impacto del sistema</h2>
 
-              <p class="text-muted mb-5">
-                  SiGeRU mejora la gestión de residuos en la ciudad todos los días.
-              </p>
-
-              <div class="row g-4">
-
-                  <div class="col-md-3">
-                      <div class="card estadistica-card h-100">
-                          <div class="card-body">
-                              <h1 class="estadistica-numero azul">1.250+</h1>
-                              <p class="mb-0">Reclamos registrados</p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-md-3">
-                      <div class="card estadistica-card h-100">
-                          <div class="card-body">
-                              <h1 class="estadistica-numero verde">980+</h1>
-                              <p class="mb-0">Reclamos resueltos</p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-md-3">
-                      <div class="card estadistica-card h-100">
-                          <div class="card-body">
-                              <h1 class="estadistica-numero amarillo">85%</h1>
-                              <p class="mb-0">Satisfacción ciudadana</p>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-md-3">
-                      <div class="card estadistica-card h-100">
-                          <div class="card-body">
-                              <h1 class="estadistica-numero rojo">24h</h1>
-                              <p class="mb-0">Tiempo promedio de respuesta</p>
-                          </div>
-                      </div>
-                  </div>
-
-              </div>
-
-          </div>
-
-      </section>
-
-      <!-- Comentarios de Usuarios de la plataforma -->
-      <section class="testimonios py-5">
-
-          <div class="container">
-
-              <h2 class="text-center mb-4">Lo que dicen los ciudadanos</h2>
-
-              <p class="text-center text-muted mb-5">
-                  Opiniones de usuarios que utilizan SiGeRU diariamente.
-              </p>
-
-              <div class="row g-4">
-
-                  <div class="col-md-4">
-
-                      <div class="card testimonio-card h-100">
-
-                          <div class="card-body">
-
-                              <p class="testimonio-texto">
-                                  "Hice un reclamo por un contenedor desbordado y lo resolvieron en menos de un día."
-                              </p>
-
-                              <hr>
-
-                              <h5 class="testimonio-nombre">
-                                  María González
-                              </h5>
-
-                              <span class="testimonio-barrio">
-                                  Barrio Centro
-                              </span>
-
-                          </div>
-
-                      </div>
-
-                  </div>
-
-                  <div class="col-md-4">
-
-                      <div class="card testimonio-card h-100">
-
-                          <div class="card-body">
-
-                              <p class="testimonio-texto">
-                                  "Ahora es mucho más fácil saber cuándo pasa el camión de basura."
-                              </p>
-
-                              <hr>
-
-                              <h5 class="testimonio-nombre">
-                                  Juan Pérez
-                              </h5>
-
-                              <span class="testimonio-barrio">
-                                  Cordón
-                              </span>
-
-                          </div>
-
-                      </div>
-
-                  </div>
-
-                  <div class="col-md-4">
-
-                      <div class="card testimonio-card h-100">
-
-                          <div class="card-body">
-
-                              <p class="testimonio-texto">
-                                  "La ciudad está más limpia desde que uso el sistema para reportar problemas."
-                              </p>
-
-                              <hr>
-
-                              <h5 class="testimonio-nombre">
-                                  Lucía Rodríguez
-                              </h5>
-
-                              <span class="testimonio-barrio">
-                                  Ciudad Vieja
-                              </span>
-
-                          </div>
-
-                      </div>
-
-                  </div>
-
-              </div>
-
-          </div>
-
-      </section>
-
-      <!-- Noticias -->
-      <section class="container py-5">
-
-        <h2 class="text-center mb-2">Noticias destacadas</h2>
-        <p class="text-center text-muted mb-4">
-          Información actualizada sobre el servicio y la ciudad
-        </p>
-
-        <div class="row g-4">
-
-          <div class="col-md-4">
-            <div class="card noticia noticia-verde h-100">
-              <div class="card-body">
-                <h5 class="noticia-title">Campañas de limpieza</h5>
-                <p class="card-text">
-                  Jornadas de limpieza en distintos barrios para mejorar el entorno urbano.
+                <p class="text-muted mb-5">
+                    SiGeRU mejora la gestión de residuos en la ciudad todos los días.
                 </p>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="card noticia noticia-azul h-100">
-              <div class="card-body">
-                <h5 class="noticia-title">Cambios en recolección</h5>
-                <p class="card-text">
-                  Nuevos horarios de recolección en zonas céntricas y residenciales.
+                <div class="row g-4">
+
+                    <div class="col-md-3">
+                        <div class="card estadistica-card h-100">
+                            <div class="card-body">
+                                <h1 class="estadistica-numero azul">1.250+</h1>
+                                <p class="mb-0">Reclamos registrados</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card estadistica-card h-100">
+                            <div class="card-body">
+                                <h1 class="estadistica-numero verde">980+</h1>
+                                <p class="mb-0">Reclamos resueltos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card estadistica-card h-100">
+                            <div class="card-body">
+                                <h1 class="estadistica-numero amarillo">85%</h1>
+                                <p class="mb-0">Satisfacción ciudadana</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card estadistica-card h-100">
+                            <div class="card-body">
+                                <h1 class="estadistica-numero rojo">24h</h1>
+                                <p class="mb-0">Tiempo promedio de respuesta</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Comentarios de Usuarios de la plataforma -->
+        <section class="testimonios py-5">
+
+            <div class="container">
+
+                <h2 class="text-center mb-4">Lo que dicen los ciudadanos</h2>
+
+                <p class="text-center text-muted mb-5">
+                    Opiniones de usuarios que utilizan SiGeRU diariamente.
                 </p>
-              </div>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+
+                        <div class="card testimonio-card h-100">
+
+                            <div class="card-body">
+
+                                <p class="testimonio-texto">
+                                    "Hice un reclamo por un contenedor desbordado y lo resolvieron en menos de un día."
+                                </p>
+
+                                <hr>
+
+                                <h5 class="testimonio-nombre">
+                                    María González
+                                </h5>
+
+                                <span class="testimonio-barrio">
+                                    Barrio Centro
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="card testimonio-card h-100">
+
+                            <div class="card-body">
+
+                                <p class="testimonio-texto">
+                                    "Ahora es mucho más fácil saber cuándo pasa el camión de basura."
+                                </p>
+
+                                <hr>
+
+                                <h5 class="testimonio-nombre">
+                                    Juan Pérez
+                                </h5>
+
+                                <span class="testimonio-barrio">
+                                    Cordón
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="card testimonio-card h-100">
+
+                            <div class="card-body">
+
+                                <p class="testimonio-texto">
+                                    "La ciudad está más limpia desde que uso el sistema para reportar problemas."
+                                </p>
+
+                                <hr>
+
+                                <h5 class="testimonio-nombre">
+                                    Lucía Rodríguez
+                                </h5>
+
+                                <span class="testimonio-barrio">
+                                    Ciudad Vieja
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="card noticia noticia-amarilla h-100">
-              <div class="card-body">
-                <h5 class="noticia-title">Eventos ambientales</h5>
-                <p class="card-text">
-                  Actividades educativas sobre reciclaje abiertas a toda la comunidad.
-                </p>
-              </div>
+        </section>
+
+        <!-- Noticias -->
+        <section class="container py-5">
+
+            <h2 class="text-center mb-2">Noticias destacadas</h2>
+            <p class="text-center text-muted mb-4">
+                Información actualizada sobre el servicio y la ciudad
+            </p>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card noticia noticia-verde h-100">
+                        <div class="card-body">
+                            <h5 class="noticia-title">Campañas de limpieza</h5>
+                            <p class="card-text">
+                                Jornadas de limpieza en distintos barrios para mejorar el entorno urbano.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card noticia noticia-azul h-100">
+                        <div class="card-body">
+                            <h5 class="noticia-title">Cambios en recolección</h5>
+                            <p class="card-text">
+                                Nuevos horarios de recolección en zonas céntricas y residenciales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card noticia noticia-amarilla h-100">
+                        <div class="card-body">
+                            <h5 class="noticia-title">Eventos ambientales</h5>
+                            <p class="card-text">
+                                Actividades educativas sobre reciclaje abiertas a toda la comunidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
 
-        </div>
+        </section>
 
-      </section>
-      
-          <!-- Horarios de recoleccion -->
-      <section class="container py-5">
-        <h2 class="text-center mb-4">Horarios de recolección</h2>
+        <!-- Horarios de recoleccion -->
+        <section class="container py-5">
+            <h2 class="text-center mb-4">Horarios de recolección</h2>
 
-        <div class="row g-4">
+            <div class="row g-4">
 
-          <div class="col-md-4">
-            <div class="card text-center h-100">
-              <div class="card-body">
-                <h5>Centro</h5>
-                <p>Lunes a viernes</p>
-                <p><strong>06:00 - 10:00</strong></p>
-              </div>
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <h5>Centro</h5>
+                            <p>Lunes a viernes</p>
+                            <p><strong>06:00 - 10:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <h5>Barrios residenciales</h5>
+                            <p>Martes y viernes</p>
+                            <p><strong>18:00 - 22:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <h5>Zonas comerciales</h5>
+                            <p>Todos los días</p>
+                            <p><strong>14:00 - 18:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
+        </section>
 
-          <div class="col-md-4">
-            <div class="card text-center h-100">
-              <div class="card-body">
-                <h5>Barrios residenciales</h5>
-                <p>Martes y viernes</p>
-                <p><strong>18:00 - 22:00</strong></p>
-              </div>
+        <!-- Avisos -->
+        <section class="container py-5">
+
+            <h2 class="text-center mb-4">Avisos importantes</h2>
+
+            <div class="alert alert-warning">
+                ⚠ Recolección especial este fin de semana
             </div>
-          </div>
 
-          <div class="col-md-4">
-            <div class="card text-center h-100">
-              <div class="card-body">
-                <h5>Zonas comerciales</h5>
-                <p>Todos los días</p>
-                <p><strong>14:00 - 18:00</strong></p>
-              </div>
+            <div class="alert alert-danger">
+                ⚠ Corte temporal del servicio en zona centro
             </div>
-          </div>
 
-        </div>
-      </section>
-
-      <!-- Avisos -->
-      <section class="container py-5">
-
-        <h2 class="text-center mb-4">Avisos importantes</h2>
-
-        <div class="alert alert-warning">
-          ⚠ Recolección especial este fin de semana
-        </div>
-
-        <div class="alert alert-danger">
-          ⚠ Corte temporal del servicio en zona centro
-        </div>
-
-      </section>
+        </section>
     </main>
     <footer>
 
     </footer>
-  </body>
+</body>
 </html>
