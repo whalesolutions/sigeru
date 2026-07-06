@@ -166,3 +166,34 @@ body {
     max-width:100%;
     border-radius:15px;
 }
+.noticia {
+  border-left: 6px solid transparent;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Hover pro */
+.noticia:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Título más fuerte */
+.noticia-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Colores elegantes */
+.noticia-verde {
+  border-left-color: #198754;
+}
+
+.noticia-azul {
+  border-left-color: #0d6efd;
+}
+
+.noticia-amarilla {
+  border-left-color: #ffc107;
+}
