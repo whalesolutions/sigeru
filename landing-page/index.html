@@ -70,6 +70,7 @@
     </header>
 
     <main>
+      <!-- Seccion Hero -->
       <section class="hero">
         <div class="hero-content">
           <h1>Bienvenido a mi sitio</h1>
@@ -77,7 +78,7 @@
           <a href="#carrusel" class="btn">Explorar</a>
         </div>
       </section>
-
+      <!-- Carrusel de imagenes  -->
       <section class="carrusel" id="carrusel">
         <div class="carrusel-track">
           <img
@@ -102,7 +103,7 @@
             title="Reciclaje"/>
 
       </section>
-
+      <!-- Bienvenida al sistema -->
       <section class="bg-light py-5">
 
         <div class="container text-center">
@@ -116,7 +117,7 @@
         </div>
 
       </section>
-      
+      <!-- Breve explicacion de quienes somos -->
       <section id="quienes-somos" class="container py-5">
           <div class="row align-items-center">
 
@@ -147,6 +148,7 @@
 
           </div>
       </section>
+      
       <section id="beneficios" class="container py-5">
 
           <div class="text-center mb-5">
@@ -195,24 +197,241 @@
           </div>
 
       </section>
-
-      <section class="container py-5">
-        <h2 class="text-center mb-4">¿Qué es la clasificación de residuos?</h2>
-
-        <div class="row align-items-center">
-          <div class="col-md-6">
-            <img src="assets/images/clasificacion.png" class="img-fluid rounded" alt="Clasificación">
-          </div>
-
-          <div class="col-md-6">
-            <p>
-              La clasificación de residuos consiste en separar los desechos según su origen
-              para facilitar su reciclaje y disposición responsable.
-            </p>
-          </div>
-        </div>
-      </section>
       
+        <!-- Explicacion de Clasificacion de residuos -->
+      <section class="guia-residuos container py-5">
+
+          <h2 class="text-center mb-4">
+              Guía de clasificación de residuos
+          </h2>
+
+          <p class="text-center text-muted mb-5">
+              Separá correctamente los residuos para mejorar la recolección y contribuir al cuidado del medio ambiente.
+          </p>
+
+          <div class="row align-items-center">
+
+              <div class="col-md-6">
+
+                  <img
+                      src="assets/images/clasificacion.png"
+                      class="img-fluid rounded guia-imagen"
+                      alt="Clasificación de residuos">
+
+              </div>
+
+              <div class="col-md-6">
+
+                  <div class="tipo-residuo">
+
+                      <h5 class="tipo-residuo-titulo papel">
+                          <span class="circulo"></span>
+                          Azul - Papel y cartón
+                      </h5>
+
+                      <p>
+                          Hojas, cuadernos, diarios, revistas y cajas de cartón limpias.
+                      </p>
+
+                  </div>
+
+                  <div class="tipo-residuo">
+
+                      <h5 class="tipo-residuo-titulo vidrio">
+                          <span class="circulo"></span>
+                          Verde - Vidrio
+                      </h5>
+
+                      <p>
+                          Botellas, frascos y envases de vidrio limpios.
+                      </p>
+
+                  </div>
+
+                  <div class="tipo-residuo">
+
+                      <h5 class="tipo-residuo-titulo plastico">
+                          <span class="circulo"></span>
+                          Amarillo - Plásticos
+                      </h5>
+
+                      <p>
+                          Botellas plásticas, envases, bolsas y recipientes limpios.
+                      </p>
+
+                  </div>
+
+                  <div class="tipo-residuo">
+
+                      <h5 class="tipo-residuo-titulo organico">
+                          <span class="circulo"></span>
+                          Negro - Orgánicos
+                      </h5>
+
+                      <p>
+                          Restos de comida, yerba, hojas y residuos biodegradables.
+                      </p>
+
+                  </div>
+
+              </div>
+
+          </div>
+
+      </section>
+
+        <!-- Estadisticas del funcionamiento de la paltaforma -->
+      <section class="impacto py-5 bg-light">
+
+          <div class="container text-center">
+
+              <h2 class="mb-4">Impacto del sistema</h2>
+
+              <p class="text-muted mb-5">
+                  SiGeRU mejora la gestión de residuos en la ciudad todos los días.
+              </p>
+
+              <div class="row g-4">
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero azul">1.250+</h1>
+                              <p class="mb-0">Reclamos registrados</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero verde">980+</h1>
+                              <p class="mb-0">Reclamos resueltos</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero amarillo">85%</h1>
+                              <p class="mb-0">Satisfacción ciudadana</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="card estadistica-card h-100">
+                          <div class="card-body">
+                              <h1 class="estadistica-numero rojo">24h</h1>
+                              <p class="mb-0">Tiempo promedio de respuesta</p>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+
+      </section>
+
+      <!-- Comentarios de Usuarios de la plataforma -->
+      <section class="testimonios py-5">
+
+          <div class="container">
+
+              <h2 class="text-center mb-4">Lo que dicen los ciudadanos</h2>
+
+              <p class="text-center text-muted mb-5">
+                  Opiniones de usuarios que utilizan SiGeRU diariamente.
+              </p>
+
+              <div class="row g-4">
+
+                  <div class="col-md-4">
+
+                      <div class="card testimonio-card h-100">
+
+                          <div class="card-body">
+
+                              <p class="testimonio-texto">
+                                  "Hice un reclamo por un contenedor desbordado y lo resolvieron en menos de un día."
+                              </p>
+
+                              <hr>
+
+                              <h5 class="testimonio-nombre">
+                                  María González
+                              </h5>
+
+                              <span class="testimonio-barrio">
+                                  Barrio Centro
+                              </span>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+                  <div class="col-md-4">
+
+                      <div class="card testimonio-card h-100">
+
+                          <div class="card-body">
+
+                              <p class="testimonio-texto">
+                                  "Ahora es mucho más fácil saber cuándo pasa el camión de basura."
+                              </p>
+
+                              <hr>
+
+                              <h5 class="testimonio-nombre">
+                                  Juan Pérez
+                              </h5>
+
+                              <span class="testimonio-barrio">
+                                  Cordón
+                              </span>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+                  <div class="col-md-4">
+
+                      <div class="card testimonio-card h-100">
+
+                          <div class="card-body">
+
+                              <p class="testimonio-texto">
+                                  "La ciudad está más limpia desde que uso el sistema para reportar problemas."
+                              </p>
+
+                              <hr>
+
+                              <h5 class="testimonio-nombre">
+                                  Lucía Rodríguez
+                              </h5>
+
+                              <span class="testimonio-barrio">
+                                  Ciudad Vieja
+                              </span>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+          </div>
+
+      </section>
+
       <!-- Noticias -->
       <section class="container py-5">
 
@@ -259,6 +478,46 @@
         </div>
 
       </section>
+      
+          <!-- Horarios de recoleccion -->
+      <section class="container py-5">
+        <h2 class="text-center mb-4">Horarios de recolección</h2>
+
+        <div class="row g-4">
+
+          <div class="col-md-4">
+            <div class="card text-center h-100">
+              <div class="card-body">
+                <h5>Centro</h5>
+                <p>Lunes a viernes</p>
+                <p><strong>06:00 - 10:00</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-center h-100">
+              <div class="card-body">
+                <h5>Barrios residenciales</h5>
+                <p>Martes y viernes</p>
+                <p><strong>18:00 - 22:00</strong></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card text-center h-100">
+              <div class="card-body">
+                <h5>Zonas comerciales</h5>
+                <p>Todos los días</p>
+                <p><strong>14:00 - 18:00</strong></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <!-- Avisos -->
       <section class="container py-5">
 

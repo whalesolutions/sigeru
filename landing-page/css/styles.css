@@ -197,3 +197,147 @@ body {
 .noticia-amarilla {
   border-left-color: #ffc107;
 }
+/* Testimonios*/
+
+.testimonios {
+    background-color: #ffffff;
+}
+
+.testimonio-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .08);
+    transition: all .3s ease;
+
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .15);
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+}
+
+.testimonio-texto {
+    font-size: 1rem;
+    font-style: italic;
+    color: #555;
+    line-height: 1.7;
+    min-height: 120px;
+}
+
+.testimonio-nombre {
+    margin-bottom: .25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+}
+
+.testimonio-barrio {
+    color: #6c757d;
+    font-size: .9rem;
+}
+
+.testimonio-card hr {
+    margin: 1.5rem 0;
+}
+
+/*Estadisticas*/
+
+.impacto {
+
+    .estadistica-card {
+        border: none;
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .08);
+        transition: .3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .15);
+        }
+    }
+
+    .estadistica-numero {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: .75rem;
+    }
+
+    .azul {
+        color: #0d6efd;
+    }
+
+    .verde {
+        color: #198754;
+    }
+
+    .amarillo {
+        color: #ffc107;
+    }
+
+    .rojo {
+        color: #dc3545;
+    }
+}
+
+/* Explicacion de residuos*/
+
+.guia-residuos {
+
+    .guia-imagen {
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    }
+
+    .tipo-residuo {
+        margin-bottom: 2rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .tipo-residuo-titulo {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: .5rem;
+    }
+
+    .circulo {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: currentColor;
+        flex-shrink: 0;
+    }
+
+    p {
+        margin-left: 32px;
+        margin-bottom: 0;
+        color: #6c757d;
+        line-height: 1.7;
+    }
+
+    /* Colores de contenedores */
+
+    .papel {
+        color: #0d6efd;
+    }
+
+    .vidrio {
+        color: #198754;
+    }
+
+    .plastico {
+        color: #ffc107;
+    }
+
+    .organico {
+        color: #212529;
+    }
+
+}
