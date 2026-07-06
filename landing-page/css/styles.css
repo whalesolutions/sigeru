@@ -166,3 +166,10 @@ body {
     max-width:100%;
     border-radius:15px;
 }
+
+.form {
+  width: 100%;
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+}
