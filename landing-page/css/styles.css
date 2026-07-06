@@ -135,6 +135,13 @@ header {
     border-radius: 15px;
 }
 
+.form {
+  width: 100%;
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
 .noticia {
     border-left: 6px solid transparent;
     border-radius: 12px;
