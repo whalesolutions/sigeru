@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../models/centroacopio.php";
+require_once __DIR__ . "/../models/centroAcopio.php";
 
 class CentroAcopioController
 {
@@ -13,7 +13,7 @@ class CentroAcopioController
 
     public function listar(): array
     {
-        return $this->modelo->obtenerTodas();
+        return $this->modelo->obtenerTodos();
     }
 
     public function buscar(int $id): ?array

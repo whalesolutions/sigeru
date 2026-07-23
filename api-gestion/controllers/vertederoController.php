@@ -13,7 +13,7 @@ class VertederoController
 
     public function listar(): array
     {
-        return $this->modelo->obtenerTodas();
+        return $this->modelo->obtenerTodos();
     }
 
     public function buscar(int $id): ?array
