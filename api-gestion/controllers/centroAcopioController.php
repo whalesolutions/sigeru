@@ -204,7 +204,7 @@ class CentroAcopioController
         if (
             isset($datosActualizados["capacidadMaxima"]) &&
             (!is_numeric($datosActualizados["capacidadMaxima"]) ||
-             $datosActualizados["capacidadMaxima"] <= 0)
+                $datosActualizados["capacidadMaxima"] <= 0)
         ) {
             return [
                 "error" => true,
@@ -216,7 +216,7 @@ class CentroAcopioController
         if (
             isset($datosActualizados["capacidadActual"]) &&
             (!is_numeric($datosActualizados["capacidadActual"]) ||
-             $datosActualizados["capacidadActual"] < 0)
+                $datosActualizados["capacidadActual"] < 0)
         ) {
             return [
                 "error" => true,
