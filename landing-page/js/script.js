@@ -1,4 +1,22 @@
-console.log("SiGeRU loaded");
+console.log("SiGeRU loaded V2");
+
+const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+const btnAcceder = document.getElementById("btnAcceder");
+const btnUsuario = document.getElementById("btnUsuario");
+const nombreUsuario = document.getElementById("nombreUsuario");
+
+if (usuario) {
+    btnAcceder.style.display = "none";
+    btnUsuario.style.display = "inline-block";
+    nombreUsuario.textContent = usuario.nombre;
+
+    btnUsuario.addEventListener("click", function () {
+        localStorage.removeItem("usuario");
+        window.location.href = "index.html";
+    });
+}
+
 var map = L.map('map').setView([-32.5228, -55.7658], 7);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
