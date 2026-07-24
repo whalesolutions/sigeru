@@ -9,226 +9,227 @@ $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 $controller = new RepuestoController();
 
+/**
+ * Obtiene y decodifica el cuerpo JSON de la petición.
+ */
+function obtenerDatosJson(): ?array
+{
+    $contenido = file_get_contents("php://input");
+
+    if ($contenido === false || trim($contenido) === "") {
+        return null;
+    }
+
+    $datos = json_decode($contenido, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($datos)) {
+        return null;
+    }
+
+    return $datos;
+}
+
+/**
+ * Envía una respuesta JSON usando el código HTTP
+ * devuelto por el controlador.
+ */
+function responderJson(array $resultado): void
+{
+    $codigo = $resultado["codigo"] ?? 200;
+
+    http_response_code($codigo);
+
+    echo json_encode(
+        $resultado,
+        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+    );
+
+    exit;
+}
+
+/*
+|--------------------------------------------------------------------------
+| GET - Listar repuestos con stock bajo
+|--------------------------------------------------------------------------
+|
+| Esta ruta debe declararse antes que /repuestos/{id},
+| para evitar que se intente interpretar "stock-bajo" como un ID.
+|
+*/
+if (
+    $metodo === "GET"
+    && preg_match("#/repuestos/stock-bajo/?$#", $ruta)
+) {
+    responderJson($controller->listarStockBajo());
+}
+
+/*
+|--------------------------------------------------------------------------
+| GET - Listar todos los repuestos
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "GET"
     && (
-        str_ends_with($ruta, "/repuestos")
+        str_ends_with($ruta, "/api-repuestos/")
+        || str_ends_with($ruta, "/api-repuestos/index.php")
+        || str_ends_with($ruta, "/repuestos")
+        || str_ends_with($ruta, "/repuestos/")
     )
 ) {
-    http_response_code(200);
-    echo json_encode($controller->listar());
-    exit;
+    responderJson($controller->listar());
 }
 
+/*
+|--------------------------------------------------------------------------
+| GET - Buscar un repuesto por ID
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "GET"
-    && preg_match("#/repuestos/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/repuestos/(\d+)/?$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
-    $repuesto = $controller->buscar($id);
 
-    if ($repuesto === null) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Repuesto no encontrado"
-        ]);
-
-        exit;
-    }
-
-    http_response_code(200);
-    echo json_encode($repuesto);
-    exit;
+    responderJson($controller->buscar($id));
 }
 
+/*
+|--------------------------------------------------------------------------
+| POST - Crear un repuesto
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "POST"
-    && preg_match("#/repuestos$#", $ruta)
+    && preg_match("#/repuestos/?$#", $ruta)
 ) {
-    $contenido = file_get_contents("php://input");
-    $datos = json_decode($contenido, true);
+    $datos = obtenerDatosJson();
 
-    if (!is_array($datos)) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El cuerpo de la petición debe contener JSON válido"
+    if ($datos === null) {
+        responderJson([
+            "error" => true,
+            "codigo" => 400,
+            "mensaje" =>
+                "El cuerpo de la petición debe contener JSON válido"
         ]);
-
-        exit;
     }
 
-    if (
-        !isset(
-            $datos["codigo"],
-            $datos["modelo"],
-            $datos["stock"],
-            $datos["precio"],
-            $datos["descripcion"]
-        )
-        || trim((string) $datos["codigo"]) === ""
-        || trim((string) $datos["modelo"]) === ""
-        || trim((string) $datos["descripcion"]) === ""
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Los campos codigo, modelo, stock, precio y descripcion son obligatorios"
-        ]);
-
-        exit;
-    }
-
-    if (
-        !is_numeric($datos["stock"])
-        || !is_numeric($datos["precio"])
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Stock y precio deben ser valores numéricos"
-        ]);
-
-        exit;
-    }
-
-    if ($datos["precio"] < 0) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El precio no puede ser negativo"
-        ]);
-
-        exit;
-    }
-
-    $repuesto = $controller->crear($datos);
-
-    http_response_code(201);
-
-    echo json_encode(
-        $repuesto,
-        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
-    );
-
-    exit;
+    responderJson($controller->crear($datos));
 }
 
+/*
+|--------------------------------------------------------------------------
+| PUT - Actualizar un repuesto
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "PUT"
-    && preg_match("#/repuestos/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/repuestos/(\d+)/?$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
 
-    $contenido = file_get_contents("php://input");
-    $datos = json_decode($contenido, true);
-
-    if (!is_array($datos)) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El cuerpo de la petición debe contener JSON válido"
+    if ($datos === null) {
+        responderJson([
+            "error" => true,
+            "codigo" => 400,
+            "mensaje" =>
+                "El cuerpo de la petición debe contener JSON válido"
         ]);
-
-        exit;
     }
 
-    if (
-        !isset(
-            $datos["codigo"],
-            $datos["modelo"],
-            $datos["stock"],
-            $datos["precio"],
-            $datos["descripcion"]
-        )
-        || trim((string) $datos["codigo"]) === ""
-        || trim((string) $datos["modelo"]) === ""
-        || trim((string) $datos["descripcion"]) === ""
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Los campos codigo, modelo, stock, precio y descripcion son obligatorios"
-        ]);
-
-        exit;
-    }
-
-    if (
-        !is_numeric($datos["stock"])
-        || !is_numeric($datos["precio"])
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Stock y precio deben ser valores numéricos"
-        ]);
-
-        exit;
-    }
-
-    if ($datos["precio"] < 0) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El precio no puede ser negativo"
-        ]);
-
-        exit;
-    }
-
-    $repuesto = $controller->actualizar($id, $datos);
-
-    if ($repuesto === null) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Repuesto no encontrado"
-        ]);
-
-        exit;
-    }
-
-    http_response_code(200);
-
-    echo json_encode(
-        $repuesto,
-        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
-    );
-
-    exit;
+    responderJson($controller->actualizar($id, $datos));
 }
 
+/*
+|--------------------------------------------------------------------------
+| PATCH - Ingresar stock
+|--------------------------------------------------------------------------
+*/
+if (
+    $metodo === "PATCH"
+    && preg_match(
+        "#/repuestos/(\d+)/ingresar-stock/?$#",
+        $ruta,
+        $coincidencias
+    )
+) {
+    $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
+
+    if ($datos === null) {
+        responderJson([
+            "error" => true,
+            "codigo" => 400,
+            "mensaje" =>
+                "El cuerpo de la petición debe contener JSON válido"
+        ]);
+    }
+
+    responderJson($controller->ingresarStock($id, $datos));
+}
+
+/*
+|--------------------------------------------------------------------------
+| PATCH - Retirar stock
+|--------------------------------------------------------------------------
+*/
+if (
+    $metodo === "PATCH"
+    && preg_match(
+        "#/repuestos/(\d+)/retirar-stock/?$#",
+        $ruta,
+        $coincidencias
+    )
+) {
+    $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
+
+    if ($datos === null) {
+        responderJson([
+            "error" => true,
+            "codigo" => 400,
+            "mensaje" =>
+                "El cuerpo de la petición debe contener JSON válido"
+        ]);
+    }
+
+    responderJson($controller->retirarStock($id, $datos));
+}
+
+/*
+|--------------------------------------------------------------------------
+| DELETE - Eliminar un repuesto
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "DELETE"
-    && preg_match("#/repuestos/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/repuestos/(\d+)/?$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
 
-    $eliminado = $controller->eliminar($id);
-
-    if (!$eliminado) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Repuesto no encontrado"
-        ]);
-
-        exit;
-    }
-
-    http_response_code(200);
-
-    echo json_encode([
-        "mensaje" => "Repuesto eliminado correctamente"
-    ]);
-
-    exit;
+    responderJson($controller->eliminar($id));
 }
 
-http_response_code(404);
-
-echo json_encode([
-    "error" => "Ruta no encontrada"
+/*
+|--------------------------------------------------------------------------
+| Ruta no encontrada
+|--------------------------------------------------------------------------
+*/
+responderJson([
+    "error" => true,
+    "codigo" => 404,
+    "mensaje" => "Ruta no encontrada"
 ]);

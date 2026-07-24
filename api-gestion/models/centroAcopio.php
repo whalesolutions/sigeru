@@ -2,8 +2,8 @@
 
 class CentroAcopio
 {
-    // Simulamos una base de datos utilizando un arreglo
-    private array $centroAcopios = [
+    // Simulación temporal de una base de datos mediante un arreglo.
+    private array $centrosAcopio = [
         [
             "id" => 1,
             "nombre" => "CCZ 5",
@@ -14,30 +14,36 @@ class CentroAcopio
             "correo" => "romariosurita@gmail.com",
             "estado" => "Inactivo",
             "capacidadMaxima" => 7000,
+            "capacidadActual" => 3200
         ],
         [
             "id" => 2,
             "nombre" => "Ecocentro Buceo",
             "telefono" => "26041025",
-            "direccion" => "Av. Tomas Basañez 1212, 11300 Montevideo, Departamento de Montevideo",
-            "longitud" => -75.7536,
-            "latitud" => -52.7292,
+            "direccion" => "Av. Tomas Basañez 1212, Montevideo, Uruguay",
+            "longitud" => -56.1345,
+            "latitud" => -34.8932,
             "correo" => "elromorelli22@hotmail.com",
             "estado" => "Activo",
             "capacidadMaxima" => 7500,
+            "capacidadActual" => 1800
         ]
     ];
 
-    // Devuelve todos los centroacopios
+    /**
+     * Devuelve todos los centros de acopio.
+     */
     public function obtenerTodos(): array
     {
-        return $this->centroAcopios;
+        return $this->centrosAcopio;
     }
 
-    // Busca un centroacopio por su ID
+    /**
+     * Busca un centro de acopio por su ID.
+     */
     public function obtenerPorId(int $id): ?array
     {
-        foreach ($this->centroAcopios as $centroAcopio) {
+        foreach ($this->centrosAcopio as $centroAcopio) {
             if ($centroAcopio["id"] === $id) {
                 return $centroAcopio;
             }
@@ -46,72 +52,117 @@ class CentroAcopio
         return null;
     }
 
-    // Crea un nuevo Centro de Acopio
+    /**
+     * Comprueba si existe un centro de acopio con el correo indicado.
+     *
+     * El parámetro $idExcluir se utiliza durante una actualización para
+     * evitar considerar el correo del propio centro como duplicado.
+     */
+    public function existeCorreo(
+        string $correo,
+        ?int $idExcluir = null
+    ): bool {
+        $correoBuscado = strtolower(trim($correo));
+
+        foreach ($this->centrosAcopio as $centroAcopio) {
+            $mismoCorreo =
+                strtolower($centroAcopio["correo"]) === $correoBuscado;
+
+            $esOtroCentro =
+                $idExcluir === null ||
+                $centroAcopio["id"] !== $idExcluir;
+
+            if ($mismoCorreo && $esOtroCentro) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Crea un nuevo centro de acopio.
+     */
     public function crear(array $datos): array
     {
-        // Generamos un nuevo ID
-        $ids = array_column($this->centroAcopios, "id");
-        $nuevoId = empty($ids) ? 1 : max($ids) + 1;
+        $nuevoId = $this->generarNuevoId();
 
-        // Creamos el centroAcopio nuevo
         $nuevoCentroAcopio = [
             "id" => $nuevoId,
-            "nombre" => $datos["nombre"],
-            "telefono" => $datos["telefono"],
-            "direccion" => $datos["direccion"],
+            "nombre" => trim((string) $datos["nombre"]),
+            "telefono" => trim((string) $datos["telefono"]),
+            "direccion" => trim((string) $datos["direccion"]),
             "longitud" => (float) $datos["longitud"],
             "latitud" => (float) $datos["latitud"],
-            "correo" => $datos["correo"],
+            "correo" => strtolower(trim((string) $datos["correo"])),
+            "estado" => trim((string) $datos["estado"]),
             "capacidadMaxima" => (int) $datos["capacidadMaxima"],
-
-            // El estado siempre comienza como "Activo"
-            "estado" => "Activo",
+            "capacidadActual" => (int) $datos["capacidadActual"]
         ];
 
-        // La agregamos al arreglo
-        $this->centroAcopios[] = $nuevoCentroAcopio;
+        $this->centrosAcopio[] = $nuevoCentroAcopio;
 
-        // Devolvemos el Centro de Acopio creado
         return $nuevoCentroAcopio;
     }
 
-    // Actualiza un centro de acopio por su ID
+    /**
+     * Actualiza un centro de acopio por su ID.
+     */
     public function actualizar(int $id, array $datos): ?array
     {
-        foreach ($this->centroAcopios as $indice => $centroAcopio) {
+        foreach ($this->centrosAcopio as $indice => $centroAcopio) {
             if ($centroAcopio["id"] === $id) {
-                $this->centroAcopios[$indice] = [
+                $this->centrosAcopio[$indice] = [
                     "id" => $id,
-                    "nombre" => $datos["nombre"],
-                    "telefono" => $datos["telefono"],
-                    "direccion" => $datos["direccion"],
+                    "nombre" => trim((string) $datos["nombre"]),
+                    "telefono" => trim((string) $datos["telefono"]),
+                    "direccion" => trim((string) $datos["direccion"]),
                     "longitud" => (float) $datos["longitud"],
                     "latitud" => (float) $datos["latitud"],
-                    "correo" => $datos["correo"],
-                    "estado" => $datos["estado"],
-                    "capacidadMaxima" => (int) $datos["capacidadMaxima"],
+                    "correo" => strtolower(
+                        trim((string) $datos["correo"])
+                    ),
+                    "estado" => trim((string) $datos["estado"]),
+                    "capacidadMaxima" =>
+                        (int) $datos["capacidadMaxima"],
+                    "capacidadActual" =>
+                        (int) $datos["capacidadActual"]
                 ];
 
-                return $this->centroAcopios[$indice];
+                return $this->centrosAcopio[$indice];
             }
         }
 
         return null;
     }
 
-    // Elimina un centro de acopio por su ID
+    /**
+     * Elimina un centro de acopio por su ID.
+     */
     public function eliminar(int $id): bool
     {
-        foreach ($this->centroAcopios as $indice => $centroAcopio) {
+        foreach ($this->centrosAcopio as $indice => $centroAcopio) {
             if ($centroAcopio["id"] === $id) {
-                unset($this->centroAcopios[$indice]);
+                unset($this->centrosAcopio[$indice]);
 
-                $this->centroAcopios = array_values($this->centroAcopios);
+                // Reordena los índices internos del arreglo.
+                $this->centrosAcopio =
+                    array_values($this->centrosAcopio);
 
                 return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * Genera el siguiente ID disponible.
+     */
+    private function generarNuevoId(): int
+    {
+        $ids = array_column($this->centrosAcopio, "id");
+
+        return empty($ids) ? 1 : max($ids) + 1;
     }
 }

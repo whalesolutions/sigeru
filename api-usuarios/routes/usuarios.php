@@ -9,167 +9,293 @@ $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 $controller = new UsuarioController();
 
+// Funciones auxiliares
+
+
+// Lee y convierte el cuerpo JSON de la petición.
+function obtenerDatosJson(): ?array
+{
+    $contenido = file_get_contents("php://input");
+    $datos = json_decode($contenido, true);
+
+    return is_array($datos) ? $datos : null;
+}
+
+// Envía una respuesta JSON con su código HTTP.
+function responderJson(int $codigo, array $contenido): void
+{
+    http_response_code($codigo);
+
+    echo json_encode(
+        $contenido,
+        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+    );
+
+    exit;
+}
+
+// GET - Listar todos los usuarios
+
+// GET /api-usuarios/
+// GET /api-usuarios/index.php
+// GET /api-usuarios/index.php/usuarios
+
 if (
     $metodo === "GET"
     && (
         str_ends_with($ruta, "/api-usuarios/")
+        || str_ends_with($ruta, "/api-usuarios")
         || str_ends_with($ruta, "/api-usuarios/index.php")
+        || str_ends_with($ruta, "/api-usuarios/index.php/usuarios")
         || str_ends_with($ruta, "/usuarios")
     )
 ) {
-    http_response_code(200);
-    echo json_encode($controller->listar());
-    exit;
+    responderJson(200, $controller->listar());
 }
 
-if ($metodo === "GET" && preg_match("#/usuarios/(\d+)$#", $ruta, $coincidencias)) {
+// GET - Buscar usuario por ID
+
+// GET /api-usuarios/index.php/usuarios/1
+
+
+if (
+    $metodo === "GET"
+    && preg_match(
+        "#/usuarios/(\d+)$#",
+        $ruta,
+        $coincidencias
+    )
+) {
     $id = (int) $coincidencias[1];
     $usuario = $controller->buscar($id);
 
     if ($usuario === null) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Usuario no encontrado"
+        responderJson(404, [
+            "error" => true,
+            "mensaje" => "Usuario no encontrado"
         ]);
-
-        exit;
     }
 
-    http_response_code(200);
-    echo json_encode($usuario);
-    exit;
+    responderJson(200, $usuario);
 }
+
+// POST - Registrar un usuario
+
+// POST /api-usuarios/index.php/usuarios
+
+// El usuario se crea automáticamente con estado Pendiente.
+
 
 if (
     $metodo === "POST"
     && preg_match("#/usuarios$#", $ruta)
 ) {
-    $contenido = file_get_contents("php://input");
-    $datos = json_decode($contenido, true);
+    $datos = obtenerDatosJson();
 
-    if (!is_array($datos)) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El cuerpo de la petición debe contener JSON válido"
+    if ($datos === null) {
+        responderJson(400, [
+            "error" => true,
+            "mensaje" => "El cuerpo de la petición debe contener JSON válido"
         ]);
-
-        exit;
     }
 
-    if (
-           empty($datos["nombre"])
-        || empty($datos["apellido"])
-        || empty($datos["documento"])
-        || empty($datos["correo"])
-    ) {
-        http_response_code(400);
+    $resultado = $controller->crear($datos);
 
-        echo json_encode([
-            "error" => "Los campos nombre, apellido, documento y correo son obligatorios"
-        ]);
-
-        exit;
-    }
-
-    $usuario = $controller->crear($datos);
-
-    http_response_code(201);
-
-    echo json_encode(
-        $usuario,
-        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+    responderJson(
+        $resultado["codigo"],
+        $resultado
     );
-
-    exit;
 }
+
+// POST - Iniciar sesión
+
+// POST /api-usuarios/index.php/usuarios/login
+
+
+if (
+    $metodo === "POST"
+    && preg_match("#/usuarios/login$#", $ruta)
+) {
+    $datos = obtenerDatosJson();
+
+    if ($datos === null) {
+        responderJson(400, [
+            "error" => true,
+            "mensaje" => "El cuerpo de la petición debe contener JSON válido"
+        ]);
+    }
+
+    $resultado = $controller->login($datos);
+
+    responderJson(
+        $resultado["codigo"],
+        $resultado
+    );
+}
+
+// PUT - Actualizar perfil
+
+// PUT /api-usuarios/index.php/usuarios/1/perfil
+
 
 if (
     $metodo === "PUT"
-    && preg_match("#/usuarios/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/usuarios/(\d+)/perfil$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
 
-    $contenido = file_get_contents("php://input");
-    $datos = json_decode($contenido, true);
-
-    if (!is_array($datos)) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El cuerpo de la petición debe contener JSON válido"
+    if ($datos === null) {
+        responderJson(400, [
+            "error" => true,
+            "mensaje" => "El cuerpo de la petición debe contener JSON válido"
         ]);
-
-        exit;
     }
 
-    if (
-           empty($datos["nombre"])
-        || empty($datos["apellido"])
-        || empty($datos["documento"])
-        || empty($datos["correo"])
-        || empty($datos["estado"])
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Los campos nombre, apellido, documento, correo y estado son obligatorios"
-        ]);
-
-        exit;
-    }
-
-    $usuario = $controller->actualizar($id, $datos);
-
-    if ($usuario === null) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Usuario no encontrado"
-        ]);
-
-        exit;
-    }
-
-    http_response_code(200);
-
-    echo json_encode(
-        $usuario,
-        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+    $resultado = $controller->actualizarPerfil(
+        $id,
+        $datos
     );
 
-    exit;
+    responderJson(
+        $resultado["codigo"],
+        $resultado
+    );
 }
+
+// PATCH - Cambiar estado
+
+// PATCH /api-usuarios/index.php/usuarios/1/estado
+
+
+if (
+    $metodo === "PATCH"
+    && preg_match(
+        "#/usuarios/(\d+)/estado$#",
+        $ruta,
+        $coincidencias
+    )
+) {
+    $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
+
+    if ($datos === null) {
+        responderJson(400, [
+            "error" => true,
+            "mensaje" => "El cuerpo de la petición debe contener JSON válido"
+        ]);
+    }
+
+    $resultado = $controller->cambiarEstado(
+        $id,
+        $datos
+    );
+
+    responderJson(
+        $resultado["codigo"],
+        $resultado
+    );
+}
+
+// PATCH - Cambiar rol
+
+// PATCH /api-usuarios/index.php/usuarios/1/rol
+
+if (
+    $metodo === "PATCH"
+    && preg_match(
+        "#/usuarios/(\d+)/rol$#",
+        $ruta,
+        $coincidencias
+    )
+) {
+    $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
+
+    if ($datos === null) {
+        responderJson(400, [
+            "error" => true,
+            "mensaje" => "El cuerpo de la petición debe contener JSON válido"
+        ]);
+    }
+
+    $resultado = $controller->cambiarRol(
+        $id,
+        $datos
+    );
+
+    responderJson(
+        $resultado["codigo"],
+        $resultado
+    );
+}
+
+
+// PATCH - Cambiar contraseña
+
+// PATCH /api-usuarios/index.php/usuarios/1/contrasena
+
+if (
+    $metodo === "PATCH"
+    && preg_match(
+        "#/usuarios/(\d+)/contrasena$#",
+        $ruta,
+        $coincidencias
+    )
+) {
+    $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
+
+    if ($datos === null) {
+        responderJson(400, [
+            "error" => true,
+            "mensaje" => "El cuerpo de la petición debe contener JSON válido"
+        ]);
+    }
+
+    $resultado = $controller->cambiarContrasena(
+        $id,
+        $datos
+    );
+
+    responderJson(
+        $resultado["codigo"],
+        $resultado
+    );
+}
+
+// DELETE - Eliminar usuario
+
+// DELETE /api-usuarios/index.php/usuarios/1
+
 
 if (
     $metodo === "DELETE"
-    && preg_match("#/usuarios/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/usuarios/(\d+)$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
 
-    $eliminada = $controller->eliminar($id);
-    if (!$eliminada) {
-    http_response_code(404);
+    $resultado = $controller->eliminar($id);
 
-    echo json_encode([
-        "error" => "Usuario no encontrado"
-    ]);
-
-    exit;
-    }
- 
-    http_response_code(200);
-
-echo json_encode([
-    "mensaje" => "Usuario eliminado correctamente"
-]);
-
-exit;
+    responderJson(
+        $resultado["codigo"],
+        $resultado
+    );
 }
 
-http_response_code(404);
 
-echo json_encode([
-    "error" => "Ruta no encontrada"
+// Ruta inexistente
+
+
+responderJson(404, [
+    "error" => true,
+    "mensaje" => "Ruta no encontrada"
 ]);

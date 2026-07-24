@@ -9,212 +9,155 @@ $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 
 $controller = new ContenedorController();
 
+/**
+ * Obtiene y decodifica el cuerpo JSON de la petición.
+ */
+function obtenerDatosJson(): ?array
+{
+    $contenido = file_get_contents("php://input");
+
+    if ($contenido === false || trim($contenido) === "") {
+        return null;
+    }
+
+    $datos = json_decode($contenido, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE || !is_array($datos)) {
+        return null;
+    }
+
+    return $datos;
+}
+
+/**
+ * Envía una respuesta JSON utilizando el código HTTP
+ * devuelto por el controlador.
+ */
+function responderJson(array $resultado): void
+{
+    $codigo = $resultado["codigo"] ?? 200;
+
+    http_response_code($codigo);
+
+    echo json_encode(
+        $resultado,
+        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+    );
+
+    exit;
+}
+
+/*
+|--------------------------------------------------------------------------
+| GET - Listar todos los contenedores
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "GET"
     && (
         str_ends_with($ruta, "/api-contenedores/")
         || str_ends_with($ruta, "/api-contenedores/index.php")
         || str_ends_with($ruta, "/contenedores")
+        || str_ends_with($ruta, "/contenedores/")
     )
 ) {
-    http_response_code(200);
-    echo json_encode($controller->listar());
-    exit;
+    responderJson($controller->listar());
 }
 
+/*
+|--------------------------------------------------------------------------
+| GET - Buscar un contenedor por ID
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "GET"
-    && preg_match("#/contenedores/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/contenedores/(\d+)/?$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
-    $contenedor = $controller->buscar($id);
 
-    if ($contenedor === null) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Contenedor no encontrado"
-        ]);
-
-        exit;
-    }
-
-    http_response_code(200);
-    echo json_encode($contenedor);
-    exit;
+    responderJson($controller->buscar($id));
 }
 
+/*
+|--------------------------------------------------------------------------
+| POST - Crear un contenedor
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "POST"
-    && preg_match("#/contenedores$#", $ruta)
+    && preg_match("#/contenedores/?$#", $ruta)
 ) {
-    $contenido = file_get_contents("php://input");
-    $datos = json_decode($contenido, true);
+    $datos = obtenerDatosJson();
 
-    if (!is_array($datos)) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El cuerpo de la petición debe contener JSON válido"
+    if ($datos === null) {
+        responderJson([
+            "error" => true,
+            "codigo" => 400,
+            "mensaje" =>
+                "El cuerpo de la petición debe contener JSON válido"
         ]);
-
-        exit;
     }
 
-    if (
-        !isset(
-            $datos["codigo"],
-            $datos["direccion"],
-            $datos["longitud"],
-            $datos["latitud"],
-            $datos["estado"],
-            $datos["capacidadMaxima"]
-        )
-        || trim((string) $datos["codigo"]) === ""
-        || trim((string) $datos["direccion"]) === ""
-        || trim((string) $datos["estado"]) === ""
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Los campos codigo, direccion, longitud, latitud, estado y capacidadMaxima son obligatorios"
-        ]);
-
-        exit;
-    }
-
-    if (
-        !is_numeric($datos["longitud"])
-        || !is_numeric($datos["latitud"])
-        || !is_numeric($datos["capacidadMaxima"])
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Longitud, latitud y capacidadMaxima deben ser valores numéricos"
-        ]);
-
-        exit;
-    }
-
-    $contenedor = $controller->crear($datos);
-
-    http_response_code(201);
-
-    echo json_encode(
-        $contenedor,
-        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
-    );
-
-    exit;
+    responderJson($controller->crear($datos));
 }
 
+/*
+|--------------------------------------------------------------------------
+| PUT - Actualizar un contenedor
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "PUT"
-    && preg_match("#/contenedores/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/contenedores/(\d+)/?$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
+    $datos = obtenerDatosJson();
 
-    $contenido = file_get_contents("php://input");
-    $datos = json_decode($contenido, true);
-
-    if (!is_array($datos)) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "El cuerpo de la petición debe contener JSON válido"
+    if ($datos === null) {
+        responderJson([
+            "error" => true,
+            "codigo" => 400,
+            "mensaje" =>
+                "El cuerpo de la petición debe contener JSON válido"
         ]);
-
-        exit;
     }
 
-    if (
-        !isset(
-            $datos["codigo"],
-            $datos["direccion"],
-            $datos["longitud"],
-            $datos["latitud"],
-            $datos["estado"],
-            $datos["capacidadMaxima"]
-        )
-        || trim((string) $datos["codigo"]) === ""
-        || trim((string) $datos["direccion"]) === ""
-        || trim((string) $datos["estado"]) === ""
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Los campos codigo, direccion, longitud, latitud, estado y capacidadMaxima son obligatorios"
-        ]);
-
-        exit;
-    }
-
-    if (
-        !is_numeric($datos["longitud"])
-        || !is_numeric($datos["latitud"])
-        || !is_numeric($datos["capacidadMaxima"])
-    ) {
-        http_response_code(400);
-
-        echo json_encode([
-            "error" => "Longitud, latitud y capacidadMaxima deben ser valores numéricos"
-        ]);
-
-        exit;
-    }
-
-    $contenedor = $controller->actualizar($id, $datos);
-
-    if ($contenedor === null) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Contenedor no encontrado"
-        ]);
-
-        exit;
-    }
-
-    http_response_code(200);
-
-    echo json_encode(
-        $contenedor,
-        JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
-    );
-
-    exit;
+    responderJson($controller->actualizar($id, $datos));
 }
 
+/*
+|--------------------------------------------------------------------------
+| DELETE - Eliminar un contenedor
+|--------------------------------------------------------------------------
+*/
 if (
     $metodo === "DELETE"
-    && preg_match("#/contenedores/(\d+)$#", $ruta, $coincidencias)
+    && preg_match(
+        "#/contenedores/(\d+)/?$#",
+        $ruta,
+        $coincidencias
+    )
 ) {
     $id = (int) $coincidencias[1];
 
-    $eliminado = $controller->eliminar($id);
-
-    if (!$eliminado) {
-        http_response_code(404);
-
-        echo json_encode([
-            "error" => "Contenedor no encontrado"
-        ]);
-
-        exit;
-    }
-
-    http_response_code(200);
-
-    echo json_encode([
-        "mensaje" => "Contenedor eliminado correctamente"
-    ]);
-
-    exit;
+    responderJson($controller->eliminar($id));
 }
 
-http_response_code(404);
-
-echo json_encode([
-    "error" => "Ruta no encontrada"
+/*
+|--------------------------------------------------------------------------
+| Ruta no encontrada
+|--------------------------------------------------------------------------
+*/
+responderJson([
+    "error" => true,
+    "codigo" => 404,
+    "mensaje" => "Ruta no encontrada"
 ]);
