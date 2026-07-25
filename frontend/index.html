@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="assets/images/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <header class="hero">
+
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
+            <div class="container">
+
+                <!--Logo-->
+                <a class="navbar-brand" href="#">
+                    <img src="./assets/images/SiGeRU.png" alt="Logo SiGeRU" height="48">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+                <!--Menu-->
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#quienes-somos">
+                                ¿Quiénes somos?
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#beneficios">
+                                Beneficios
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#reclamos">
+                                Reclamos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#mapa">
+                                Mapa
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contacto">
+                                Contacto
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--Login -->
+                <a id="btnAcceder" href="login.html" class="btn btn-success btn-lg rounded-3 btn-sigeru">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>
+                    Acceder
+                </a>
+
+                <a id="btnUsuario" href="#" class="btn btn-success btn-lg rounded-3 btn-sigeru" style="display: none;">
+                    <i class="bi bi-person-circle me-2"></i>
+                    <span id="nombreUsuario"></span>
+                </a>
+            </div>
+        </nav>
+        <!--Hero-->
+        <section class="hero-content">
+            <div class="container">
+                <h1 class="mb-3">Sistema de Gestión <br>
+                    de Residuos Urbanos</h1>
+                <p class="mb-4">Gestioná y optimizá el manejo de residuos urbanos de forma eficiente.</p>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <!-- Bienvenida al sistema -->
+        <section class="bg-light py-5">
+
+            <div class="container text-center">
+
+                <h2 class="mb-3">Bienvenido al Sistema de Gestión de Residuos</h2>
+
+                <p class="lead text-muted">
+                    Este sistema permite registrar reclamos, realizar seguimiento y mejorar la gestión ambiental de la
+                    ciudad.
+                </p>
+
+            </div>
+
+        </section>
+        <!-- Breve explicacion de quienes somos -->
+        <section id="quienes-somos" class="container bg-success py-5">
+            <div class="row align-items-center">
+
+                <div class="col-md-6">
+                    <img src="https://media.subrayado.com.uy/p/bd12b19d0b4c6cfacc3e03049bed7513/adjuntos/230/videos/003/357/0003357843/cosse-limpieza-municipio-ch.jpg"
+                        class="img-fluid rounded" alt="Equipo de gestión de residuos">
+                </div>
+
+                <div class="col-md-6">
+                    <h2>¿Quiénes somos?</h2>
+
+                    <p>
+                        Somos un sistema dedicado a mejorar la gestión de residuos y
+                        fortalecer la comunicación entre los ciudadanos y el municipio.
+                        Nuestro objetivo es brindar una plataforma sencilla, rápida y
+                        transparente para realizar reclamos, consultar información y
+                        promover buenas prácticas ambientales.
+                    </p>
+
+                    <p>
+                        A través de SiGeRU buscamos contribuir a una ciudad más limpia,
+                        fomentando la participación ciudadana y facilitando el acceso a
+                        los servicios relacionados con la recolección y disposición de
+                        residuos.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+        <!-- Beneficios -->
+        <section id="beneficios" class="container bg-light py-5">
+            <div class="text-center mb-5">
+                <div class="mb-3">
+                    <i class="bi bi-clipboard-check fs-1 text-success"></i>
+                </div>
+                <h2>Beneficios</h2>
+                <p>Con SiGeRU tendrás acceso a herramientas que facilitan la gestión de residuos.</p>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-verde h-100 text-center">
+                        <div class="card-body">
+                            <h4> Reclamos rápidos</h4>
+                            <p>
+                                Registrá reclamos de forma sencilla y recibí un número
+                                de seguimiento para consultar su estado.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-verde h-100 text-center">
+                        <div class="card-body">
+                            <h4>Información actualizada</h4>
+                            <p>
+                                Consultá los días de recolección, ubicación de
+                                contenedores y avisos importantes del servicio.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-verde h-100 text-center">
+                        <div class="card-body">
+                            <h4> Cuidado del ambiente</h4>
+                            <p>
+                                Accedé a recomendaciones sobre clasificación de residuos
+                                y colaborá con una ciudad más limpia y sostenible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Mapa de contenedore -->
+        <section id="mapa" class="bg-light py-5">
+            <h2 class="text-center">Mapa Nacional de Contenedores</h2>
+            <div id="map"></div>
+        </section>
+        <!-- Explicacion de Clasificacion de residuos -->
+        <section id="guia" class="guia-residuos container py-5">
+            <h2 class="text-center mb-4">
+                <i class="bi bi-recycle text-success"></i>
+                Guía de clasificación de residuos
+            </h2>
+
+            <p class="text-center text-muted mb-5">
+                Separá correctamente los residuos para mejorar la recolección y contribuir al cuidado del medio
+                ambiente.
+            </p>
+
+            <div class="row align-items-center">
+
+                <div class="col-md-6">
+
+                    <img src="assets/images/clasificacion.png" class="img-fluid rounded guia-imagen"
+                        alt="Clasificación de residuos">
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="tipo-residuo">
+
+                        <h5 class="tipo-residuo-titulo papel">
+                            <span class="circulo"></span>
+                            Azul - Papel y cartón
+                        </h5>
+
+                        <p>
+                            Hojas, cuadernos, diarios, revistas y cajas de cartón limpias.
+                        </p>
+
+                    </div>
+
+                    <div class="tipo-residuo">
+
+                        <h5 class="tipo-residuo-titulo vidrio">
+                            <span class="circulo"></span>
+                            Verde - Vidrio
+                        </h5>
+
+                        <p>
+                            Botellas, frascos y envases de vidrio limpios.
+                        </p>
+
+                    </div>
+
+                    <div class="tipo-residuo">
+
+                        <h5 class="tipo-residuo-titulo plastico">
+                            <span class="circulo"></span>
+                            Amarillo - Plásticos
+                        </h5>
+
+                        <p>
+                            Botellas plásticas, envases, bolsas y recipientes limpios.
+                        </p>
+
+                    </div>
+
+                    <div class="tipo-residuo">
+
+                        <h5 class="tipo-residuo-titulo organico">
+                            <span class="circulo"></span>
+                            Negro - Orgánicos
+                        </h5>
+
+                        <p>
+                            Restos de comida, yerba, hojas y residuos biodegradables.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Estadisticas del funcionamiento de la paltaforma -->
+        <section id="impacto" class="impacto py-5 bg-light">
+
+            <div class="container text-center">
+
+                <h2 class="mb-4">Impacto del sistema</h2>
+
+                <p class="text-muted mb-5">
+                    SiGeRU mejora la gestión de residuos en la ciudad todos los días.
+                </p>
+
+                <div class="row g-4">
+
+                    <div class="col-md-3">
+                        <div class="card card-sigeru estadistica-card h-100">
+                            <div class="card-body">
+                                <i class="bi bi-file-earmark-text fs-1 text-success"></i>
+                                <h1 class="estadistica-numero azul">1.250+</h1>
+                                <p class="mb-0">Reclamos registrados</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card card-sigeru estadistica-card h-100">
+                            <div class="card-body">
+                                <i class="bi bi-check-circle fs-1 text-primary"></i>
+                                <h1 class="estadistica-numero verde">980+</h1>
+                                <p class="mb-0">Reclamos resueltos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card card-sigeru estadistica-card h-100">
+                            <div class="card-body">
+                                <i class="bi bi-emoji-smile fs-1 text-warning"></i>
+                                <h1 class="estadistica-numero amarillo">85%</h1>
+                                <p class="mb-0">Satisfacción ciudadana</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card card-sigeru estadistica-card h-100">
+                            <div class="card-body">
+                                <i class="bi bi-clock-history fs-1 text-danger"></i>
+                                <h1 class="estadistica-numero rojo">24h</h1>
+                                <p class="mb-0">Tiempo promedio de respuesta</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Comentarios de Usuarios de la plataforma -->
+        <section class="testimonios bg-light py-5">
+
+            <div class="container">
+
+                <h2 class="text-center mb-4">Lo que dicen los ciudadanos</h2>
+
+                <p class="text-center text-muted mb-5">
+                    Opiniones de usuarios que utilizan SiGeRU diariamente.
+                </p>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+
+                        <div class="card card-sigeru testimonio-card h-100">
+
+                            <div class="card-body">
+
+                                <p class="testimonio-texto">
+                                    "Hice un reclamo por un contenedor desbordado y lo resolvieron en menos de un día."
+                                </p>
+
+                                <hr>
+
+                                <h5 class="testimonio-nombre">
+                                    María González
+                                </h5>
+
+                                <span class="testimonio-barrio">
+                                    Barrio Centro
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="card card-sigeru testimonio-card h-100">
+
+                            <div class="card-body">
+
+                                <p class="testimonio-texto">
+                                    "Ahora es mucho más fácil saber cuándo pasa el camión de basura."
+                                </p>
+
+                                <hr>
+
+                                <h5 class="testimonio-nombre">
+                                    Juan Pérez
+                                </h5>
+
+                                <span class="testimonio-barrio">
+                                    Cordón
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div class="card card-sigeru testimonio-card h-100">
+
+                            <div class="card-body">
+
+                                <p class="testimonio-texto">
+                                    "La ciudad está más limpia desde que uso el sistema para reportar problemas."
+                                </p>
+
+                                <hr>
+
+                                <h5 class="testimonio-nombre">
+                                    Lucía Rodríguez
+                                </h5>
+
+                                <span class="testimonio-barrio">
+                                    Ciudad Vieja
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Noticias -->
+        <section id="noticias" class="container py-5">
+            <h2 class="text-center mb-2">
+                <i class="bi bi-newspaper text-success"></i>
+                Noticias destacadas
+            </h2>
+            <p class="text-center text-muted mb-4">
+                Información actualizada sobre el servicio y la ciudad
+            </p>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-verde h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-tree fs-2 text-success mb-3"></i>
+                            <h5 class="noticia-title">Campañas de limpieza</h5>
+                            <p class="card-text">
+                                Jornadas de limpieza en distintos barrios para mejorar el entorno urbano.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-amarillo h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-truck fs-2 text-warning mb-3"></i>
+                            <h5 class="noticia-title">Cambios en recolección</h5>
+                            <p class="card-text">
+                                Nuevos horarios de recolección en zonas céntricas y residenciales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-azul h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-calendar-event fs-2 text-primary mb-3"></i>
+                            <h5 class="noticia-title">Eventos ambientales</h5>
+                            <p class="card-text">
+                                Actividades educativas sobre reciclaje abiertas a toda la comunidad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Horarios de recoleccion -->
+        <section id="horarios" class="container py-5">
+            <h2 class="text-center mb-4">Horarios de recolección</h2>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-verde h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-building fs-1 text-success mb-3"></i>
+                            <h5>Centro</h5>
+                            <p>Lunes a viernes</p>
+                            <p><strong>06:00 - 10:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-rojo h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-house-door fs-1 text-danger mb-3"></i>
+                            <h5>Barrios residenciales</h5>
+                            <p>Martes y viernes</p>
+                            <p><strong>18:00 - 22:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-sigeru borde-azul h-100 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-shop fs-1 text-primary mb-3"></i>
+                            <h5>Zonas comerciales</h5>
+                            <p>Todos los días</p>
+                            <p><strong>14:00 - 18:00</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Avisos -->
+        <section class="container py-5">
+
+            <h2 class="text-center mb-4">Avisos importantes</h2>
+
+            <div class="alert alert-warning">
+                ⚠ Recolección especial este fin de semana
+            </div>
+
+            <div class="alert alert-danger">
+                ⚠ Corte temporal del servicio en zona centro
+            </div>
+
+        </section>
+        <!-- Reclamos -->
+        <section id="reclamos" class="bg-light py-5">
+
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2>Registrar un reclamo</h2>
+                    <p class="text-muted">
+                        Complete el siguiente formulario para informar una incidencia relacionada con la gestión de
+                        residuos.
+                    </p>
+                </div>
+                <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+                    <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="#" method="POST"
+                        enctype="multipart/form-data">
+
+                        <div class="row g-3">
+
+                            <!-- Nombre -->
+                            <div class="col-md-6">
+
+                                <label for="nombre" class="form-label">
+                                    Nombre y apellido
+                                </label>
+
+                                <input type="text" id="nombre" name="nombre" class="form-control"
+                                    placeholder="Ej: Juan Pérez" required>
+
+                            </div>
+
+                            <!-- Celular -->
+                            <div class="col-md-6">
+
+                                <label for="celular" class="form-label">
+                                    Número de celular
+                                </label>
+
+                                <input type="tel" id="celular" name="celular" class="form-control"
+                                    placeholder="+598 99 123 456" required>
+
+                            </div>
+
+                            <!-- Email -->
+
+                            <div class="col-md-6">
+
+                                <label for="email" class="form-label">
+                                    Correo electrónico
+                                </label>
+
+                                <input type="email" id="email" name="email" class="form-control"
+                                    placeholder="correo@email.com">
+
+                            </div>
+
+                            <!-- Contenedor -->
+
+                            <div class="col-md-6">
+
+                                <label for="contenedor" class="form-label">
+                                    ID del contenedor
+                                </label>
+
+                                <input type="text" id="contenedor" name="contenedor" class="form-control"
+                                    placeholder="Ej: CT-001" required>
+
+                                <small class="text-muted">
+                                    Número ubicado en la etiqueta del contenedor.
+                                </small>
+
+                            </div>
+
+                            <!-- Tipo incidencia -->
+
+                            <div class="col-md-6">
+
+                                <label for="tipoIncidencia" class="form-label">
+                                    Tipo de incidencia
+                                </label>
+
+                                <select id="tipoIncidencia" name="tipoIncidencia" class="form-select" required>
+
+                                    <option value="" selected disabled>
+                                        Seleccione una opción
+                                    </option>
+
+                                    <option value="lleno">
+                                        Contenedor lleno
+                                    </option>
+
+                                    <option value="desbordado">
+                                        Contenedor desbordado
+                                    </option>
+
+                                    <option value="danado">
+                                        Contenedor dañado
+                                    </option>
+
+                                    <option value="alrededor">
+                                        Basura alrededor del contenedor
+                                    </option>
+
+                                    <option value="recoleccion">
+                                        Recolección no realizada
+                                    </option>
+
+                                    <option value="otro">
+                                        Otro
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <!-- Ubicacion -->
+                            <div class="col-md-6">
+
+                                <label for="ubicacion" class="form-label">
+                                    Ubicación del problema
+                                </label>
+
+                                <input type="text" id="ubicacion" name="ubicacion" class="form-control"
+                                    placeholder="Ej: Av. 18 de Julio y Ejido">
+
+                            </div>
+
+                            <!-- Descripcion -->
+                            <div class="col-12">
+
+                                <label for="descripcion" class="form-label">
+                                    Descripción del problema
+                                </label>
+
+                                <textarea id="descripcion" name="descripcion" class="form-control" rows="4"
+                                    placeholder="Describa el problema..." required></textarea>
+
+                            </div>
+
+                            <!-- Notificaciones -->
+                            <div class="col-md-6 d-flex align-items-center">
+
+                                <div class="form-check mt-4">
+
+                                    <input type="checkbox" class="form-check-input" id="notificacion"
+                                        name="notificacion">
+
+                                    <label class="form-check-label" for="notificacion">
+                                        Deseo recibir una notificación cuando se resuelva.
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Boton -->
+                            <div class="col-12 text-center mt-4">
+
+                                <button type="submit" class="btn btn-success px-5">
+                                    <i class="bi bi-send-fill me-2"></i>
+                                    Enviar reclamo
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+        </section>
+    </main>
+
+    <footer id="contacto" class="bg-success text-white pt-5 pb-3">
+
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Logo y descripción -->
+                <div class="col-md-4 mb-4">
+
+                    <img src="assets/images/SiGeRU.png" alt="Logo SiGeRU" class="footer-logo mb-3">
+
+                    <p>
+                        Sistema Nacional de Gestión de Residuos Urbanos.
+                        Una plataforma digital para mejorar la comunicación
+                        entre ciudadanos e instituciones de Uruguay.
+                    </p>
+
+                </div>
+
+
+                <!-- Links -->
+                <div class="col-md-4 mb-4">
+
+                    <h5 class="fw-bold">
+                        Enlaces rápidos
+                    </h5>
+
+                    <ul class="list-unstyled">
+
+                        <li class="mb-2">
+                            <a href="#quienes-somos" class="footer-link">
+                                ¿Quiénes somos?
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="#beneficios" class="footer-link">
+                                Beneficios
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="#mapa" class="footer-link">
+                                Mapa nacional
+                            </a>
+                        </li>
+
+                        <li class="mb-2">
+                            <a href="#reclamos" class="footer-link">
+                                Registrar reclamo
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- Contacto -->
+                <div class="col-md-4 mb-4">
+
+                    <h5 class="fw-bold">
+                        Contacto
+                    </h5>
+
+
+                    <p>
+                        <i class="bi bi-geo-alt-fill"></i>
+                        Uruguay
+                    </p>
+
+                    <p>
+                        <i class="bi bi-envelope-fill"></i>
+                        contacto@sigeru.uy
+                    </p>
+
+                    <p>
+                        <i class="bi bi-telephone-fill"></i>
+                        29892345-SIGERU
+                    </p>
+
+
+                    <div class="mt-3">
+
+                        <a href="#" class="social">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+
+
+                        <a href="#" class="social">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+
+
+                        <a href="#" class="social">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <div class="text-center">
+
+                <p class="mb-0">
+                    © 2026 SiGeRU - Sistema Nacional de Gestión de Residuos Urbanos
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="js/script.js?v=3"></script>
+
+</body>
+
+</html>

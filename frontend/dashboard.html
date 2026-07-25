@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel de administración - SiGeRU</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+    <div class="d-flex min-vh-100">
+        <!-- Barra lateral -->
+        <aside id="sidebar" class="sidebar text-white d-flex flex-column p-4">
+
+            <!-- Logo de la empresa -->
+            <div class="text-center border-bottom border-light border-opacity-25 pb-4 mb-4">
+                <img src="assets/images/SiGeRU.png" alt="Logo de SiGeRU" class="logo-dashboard mb-3">
+                <h1 class="h3 fw-bold mb-1">
+                    SiGeRU
+                </h1>
+                <p class="small text-white-50 mb-0">
+                    Sistema de Gestión de Residuos Urbanos
+                </p>
+            </div>
+
+            <!-- Menú -->
+            <nav class="nav nav-pills flex-column gap-2">
+
+                <!-- Inicio -->
+                <a href="dashboard.html" class="nav-link menu-link active" aria-current="page">
+                    <i class="bi bi-house-door me-2"></i>
+                    Inicio
+                </a>
+
+                <!-- Gestión de usuarios -->
+                <button class="nav-link menu-link boton-submenu text-start" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#submenuUsuarios" aria-expanded="false" aria-controls="submenuUsuarios">
+                    <span>
+                        <i class="bi bi-people me-2"></i>
+                        Gestión de usuarios
+                    </span>
+                    <i class="bi bi-chevron-down flecha-submenu"></i>
+                </button>
+
+                <div id="submenuUsuarios" class="collapse submenu">
+                    <a href="altaUsuario.html" class="nav-link submenu-link">
+                        <i class="bi bi-person-plus me-2"></i>
+                        Alta de usuario
+                    </a>
+                    <a href="listarUsuarios.html" class="nav-link submenu-link">
+                        <i class="bi bi-search me-2"></i>
+                        Consultar usuarios
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled" aria-disabled="true">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Modificar usuario
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled" aria-disabled="true">
+                        <i class="bi bi-person-x me-2"></i>
+                        Baja de usuario
+                    </a>
+                </div>
+
+                <!-- Gestión de lass incidencias -->
+                <button class="nav-link menu-link boton-submenu text-start" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#submenuIncidencias" aria-expanded="false" aria-controls="submenuIncidencias">
+                    <span>
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        Gestión de incidencias
+                    </span>
+                    <i class="bi bi-chevron-down flecha-submenu"></i>
+                </button>
+
+                <div id="submenuIncidencias" class="collapse submenu">
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Alta de incidencia
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-search me-2"></i>
+                        Consultar incidencias
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Modificar incidencia
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-x-circle me-2"></i>
+                        Baja de incidencia
+                    </a>
+                </div>
+
+                <!-- Gestión de contenedores -->
+                <button class="nav-link menu-link boton-submenu text-start" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#submenuContenedores" aria-expanded="false" aria-controls="submenuContenedores">
+                    <span>
+                        <i class="bi bi-trash3 me-2"></i>
+                        Gestión de contenedores
+                    </span>
+                    <i class="bi bi-chevron-down flecha-submenu"></i>
+                </button>
+                <div id="submenuContenedores" class="collapse submenu">
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Alta de contenedor
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-search me-2"></i>
+                        Consultar contenedores
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Modificar contenedor
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-x-circle me-2"></i>
+                        Baja de contenedor
+                    </a>
+                </div>
+
+                <!-- Gestión de camiones -->
+                <button class="nav-link menu-link boton-submenu text-start" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#submenuCamiones" aria-expanded="false" aria-controls="submenuCamiones">
+                    <span>
+                        <i class="bi bi-truck me-2"></i>
+                        Gestión de camiones
+                    </span>
+                    <i class="bi bi-chevron-down flecha-submenu"></i>
+                </button>
+
+                <div id="submenuCamiones" class="collapse submenu">
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Alta de camión
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-search me-2"></i>
+                        Consultar camiones
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Modificar camión
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-x-circle me-2"></i>
+                        Baja de camión
+                    </a>
+                </div>
+
+                <!-- Gestión de rutas -->
+                <button class="nav-link menu-link boton-submenu text-start" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#submenuRutas" aria-expanded="false" aria-controls="submenuRutas">
+                    <span>
+                        <i class="bi bi-geo-alt me-2"></i>
+                        Gestión de rutas
+                    </span>
+                    <i class="bi bi-chevron-down flecha-submenu"></i>
+                </button>
+                <div id="submenuRutas" class="collapse submenu">
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Alta de ruta
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-search me-2"></i>
+                        Consultar rutas
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Modificar ruta
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-x-circle me-2"></i>
+                        Baja de ruta
+                    </a>
+                </div>
+
+                <!-- Gestión de noticias -->
+                <button class="nav-link menu-link boton-submenu text-start" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#submenuNoticias" aria-expanded="false" aria-controls="submenuNoticias">
+                    <span>
+                        <i class="bi bi-newspaper me-2"></i>
+                        Gestión de noticias
+                    </span>
+                    <i class="bi bi-chevron-down flecha-submenu"></i>
+                </button>
+                <div id="submenuNoticias" class="collapse submenu">
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Alta de noticia
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-search me-2"></i>
+                        Consultar noticias
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Modificar noticia
+                    </a>
+                    <a href="#" class="nav-link submenu-link disabled">
+                        <i class="bi bi-x-circle me-2"></i>
+                        Baja de noticia
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Cerrar sesión -->
+            <div class="mt-auto border-top border-light border-opacity-25 pt-4">
+                <a href="login.html" id="btnCerrarSesion" class="nav-link menu-link cerrar-sesion">
+                    <i class="bi bi-box-arrow-right me-2"></i>
+                    Cerrar sesión
+                </a>
+            </div>
+        </aside>
+
+        <!-- Contenido -->
+        <div class="flex-grow-1 contenido-dashboard">
+
+            <!-- Encabezado -->
+            <header class="bg-white border-bottom shadow-sm px-4 py-3">
+                <div class="d-flex justify-content-between align-items-center gap-3">
+                    <div class="d-flex align-items-center gap-3">
+
+                        <!-- Botón menú móvil -->
+                        <button id="btnMenu" class="btn btn-outline-success d-lg-none" type="button"
+                            aria-label="Abrir menú">
+                            <i class="bi bi-list fs-5"></i>
+                        </button>
+                        <div>
+                            <h2 class="h4 fw-bold mb-1">
+                                Panel de administración
+                            </h2>
+                            <p class="text-secondary small mb-0">
+                                Sistema de Gestión de Residuos Urbanos
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Información del usuario -->
+                    <div class="d-flex align-items-center gap-3">
+                        <button class="btn btn-light rounded-circle boton-notificaciones" type="button"
+                            aria-label="Notificaciones">
+                            <i class="bi bi-bell fs-5"></i>
+                        </button>
+                        <div class="d-none d-sm-flex align-items-center gap-3">
+                            <div class="avatar-usuario d-flex align-items-center justify-content-center rounded-circle">
+                                <i class="bi bi-person-fill fs-4"></i>
+                            </div>
+                            <div>
+                                <strong id="nombreUsuario" class="d-block">
+                                    Usuario
+                                </strong>
+                                <span id="rolUsuario" class="text-success small">
+                                    Administrador
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenido principal del dashboard -->
+            <main class="container-fluid p-4 p-lg-5">
+
+                <!-- Mensaje de Bienvenida -->
+                <section class="mb-4">
+
+                    <h2 class="h3 fw-bold mb-2">
+                        Bienvenido a SiGeRU
+                    </h2>
+
+                    <p class="text-secondary mb-0">
+                        Acceda a los diferentes módulos del sistema desde este panel.
+                    </p>
+
+                </section>
+
+                <!-- Tarjetas Para poder gestionar las distintas funciones del programa-->
+                <section class="row g-4">
+
+                    <!--  Tarjeta de Gestión de usuarios ABM -->
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <article class="card h-100 border-0 shadow-sm rounded-4">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="icono-modulo mb-3">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">
+                                    Gestión de usuarios
+                                </h3>
+                                <p class="text-secondary">
+                                    Registre, consulte y administre los usuarios del sistema.
+                                </p>
+                                <div class="row g-2 mt-auto">
+                                    <div class="col-6">
+                                        <a href="altaUsuario.html" class="btn btn-success w-100">
+                                            <i class="bi bi-person-plus me-1"></i>
+                                            Alta
+                                        </a>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <a href="listarUsuarios.html" class="btn btn-outline-success w-100">
+                                            <i class="bi bi-search me-1"></i>
+                                            Consultar
+                                        </a>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <a href="listarUsuarios.html" class="btn btn-outline-secondary w-100">
+                                            <i class="bi bi-pencil-square me-1"></i>
+                                            Modificar
+                                        </a>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <a href="listarUsuarios.html" class="btn btn-outline-danger w-100">
+                                            <i class="bi bi-person-x me-1"></i>
+                                            Baja
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Tarjeta de Gestión de incidencias  ABM todavia no tiene nada es un prototipado antes de la final cuando se agregen las funciones borro este es solo para acordarme-->
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <article class="card h-100 border-0 shadow-sm rounded-4">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="icono-modulo mb-3">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">
+                                    Gestión de incidencias
+                                </h3>
+                                <p class="text-secondary">
+                                    Registre, consulte y gestione las incidencias reportadas.
+                                </p>
+                                <div class="row g-2 mt-auto">
+                                    <div class="col-6">
+                                        <button class="btn btn-success w-100" type="button" disabled>
+                                            <i class="bi bi-plus-circle me-1"></i>
+                                            Alta
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success w-100" type="button" disabled>
+                                            <i class="bi bi-search me-1"></i>
+                                            Consultar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-secondary w-100" type="button" disabled>
+                                            <i class="bi bi-pencil-square me-1"></i>
+                                            Modificar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger w-100" type="button" disabled>
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            Baja
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Tarjeta ABM todavia no tiene nada es un prototipado antes de la final cuando se agregen las funciones borro este es solo para acordarme-->
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <article class="card h-100 border-0 shadow-sm rounded-4">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="icono-modulo mb-3">
+                                    <i class="bi bi-trash3"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">
+                                    Gestión de contenedores
+                                </h3>
+                                <p class="text-secondary">
+                                    Registre, consulte y administre los contenedores.
+                                </p>
+                                <div class="row g-2 mt-auto">
+
+                                    <div class="col-6">
+                                        <button class="btn btn-success w-100" type="button" disabled>
+                                            <i class="bi bi-plus-circle me-1"></i>
+                                            Alta
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success w-100" type="button" disabled>
+                                            <i class="bi bi-search me-1"></i>
+                                            Consultar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-secondary w-100" type="button" disabled>
+                                            <i class="bi bi-pencil-square me-1"></i>
+                                            Modificar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger w-100" type="button" disabled>
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            Baja
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Tarjeta ABM todavia no tiene nada es un prototipado antes de la final cuando se agregen las funciones borro este es solo para acordarme-->
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <article class="card h-100 border-0 shadow-sm rounded-4">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="icono-modulo mb-3">
+                                    <i class="bi bi-truck"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">
+                                    Gestión de camiones
+                                </h3>
+                                <p class="text-secondary">
+                                    Registre, consulte y administre los camiones de recolección.
+                                </p>
+
+                                <div class="row g-2 mt-auto">
+                                    <div class="col-6">
+                                        <button class="btn btn-success w-100" type="button" disabled>
+                                            <i class="bi bi-plus-circle me-1"></i>
+                                            Alta
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success w-100" type="button" disabled>
+                                            <i class="bi bi-search me-1"></i>
+                                            Consultar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-secondary w-100" type="button" disabled>
+                                            <i class="bi bi-pencil-square me-1"></i>
+                                            Modificar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger w-100" type="button" disabled>
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            Baja
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Tarjeta ABM todavia no tiene nada es un prototipado antes de la final cuando se agregen las funciones borro este es solo para acordarme-->
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <article class="card h-100 border-0 shadow-sm rounded-4">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="icono-modulo mb-3">
+                                    <i class="bi bi-geo-alt"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">
+                                    Gestión de rutas
+                                </h3>
+                                <p class="text-secondary">
+                                    Registre, consulte y organice las rutas de recolección.
+                                </p>
+
+                                <div class="row g-2 mt-auto">
+                                    <div class="col-6">
+                                        <button class="btn btn-success w-100" type="button" disabled>
+                                            <i class="bi bi-plus-circle me-1"></i>
+                                            Alta
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success w-100" type="button" disabled>
+                                            <i class="bi bi-search me-1"></i>
+                                            Consultar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-secondary w-100" type="button" disabled>
+                                            <i class="bi bi-pencil-square me-1"></i>
+                                            Modificar
+                                        </button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger w-100" type="button" disabled>
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            Baja
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Tarjeta ABM todavia no tiene nada es un prototipado antes de la final cuando se agregen las funciones borro este es solo para acordarme-->
+                    <div class="col-12 col-md-6 col-xl-4">
+                        <article class="card h-100 border-0 shadow-sm rounded-4">
+                            <div class="card-body d-flex flex-column p-4">
+                                <div class="icono-modulo mb-3">
+                                    <i class="bi bi-newspaper"></i>
+                                </div>
+                                <h3 class="h5 fw-bold">
+                                    Gestión de noticias
+                                </h3>
+                                <p class="text-secondary">
+                                    Registre, consulte y administre las noticias del sistema.
+                                </p>
+
+                                <div class="row g-2 mt-auto">
+
+                                    <div class="col-6">
+
+                                        <button class="btn btn-success w-100" type="button" disabled>
+                                            <i class="bi bi-plus-circle me-1"></i>
+                                            Alta
+                                        </button>
+
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-success w-100" type="button" disabled>
+                                            <i class="bi bi-search me-1"></i>
+                                            Consultar
+                                        </button>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-secondary w-100" type="button" disabled>
+                                            <i class="bi bi-pencil-square me-1"></i>
+                                            Modificar
+                                        </button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-danger w-100" type="button" disabled>
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            Baja
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Tarjeta informativa todavia no hace nada solo se ve bien para indicar que esta bajo remodelacion la dashboard-->
+                <section class="mt-5">
+                    <div class="alert alert-success border-0 shadow-sm rounded-4 mb-0">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-info-circle fs-4"></i>
+                            <div>
+                                <strong>
+                                    Panel en desarrollo
+                                </strong>
+                                <p class="mb-0">
+                                    Los módulos se habilitarán a medida que sean integrados al sistema. HUB V1 Suejato a cambios no representa el producto final
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
