@@ -13,7 +13,11 @@ const iconoContrasena =
     document.getElementById("iconoContrasena");
 
 
+<<<<<<< Updated upstream
 /*Mostrar u ocultar contraseña*/
+=======
+/*Mostrar u ocultar contraseña en el formulario al dar click en el visor*/
+>>>>>>> Stashed changes
 
 btnMostrarContrasena.addEventListener("click", function () {
 
@@ -260,6 +264,10 @@ formulario.addEventListener("submit", async function (event) {
     }
 
 });
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 /*
 
 |Validar que un dato contenga solamente números*/
@@ -268,7 +276,10 @@ function validarSoloNumeros(valor) {
     return /^[0-9]+$/.test(valor);
 
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 /*Mostrar mensajes con Bootstrap*/
 function mostrarMensaje(texto, tipo) {
 
