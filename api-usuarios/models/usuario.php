@@ -13,6 +13,7 @@ class Usuario
                 "nombre" => "Romario",
                 "apellido" => "Surita",
                 "documento" => "67152743",
+                "telefono" => "099111111",
                 "correo" => "romariosurita@gmail.com",
                 "contrasena" => password_hash(
                     "Romario123",
@@ -26,6 +27,7 @@ class Usuario
                 "nombre" => "Rodrigo",
                 "apellido" => "Morelli",
                 "documento" => "49383843",
+                "telefono" => "099222222",
                 "correo" => "rodrimorelli22@gmail.com",
                 "contrasena" => password_hash(
                     "Rodrigo123",
@@ -119,13 +121,14 @@ class Usuario
             "nombre" => trim($datos["nombre"]),
             "apellido" => trim($datos["apellido"]),
             "documento" => trim($datos["documento"]),
+            "telefono" => trim($datos["telefono"]),
             "correo" => strtolower(trim($datos["correo"])),
             "contrasena" => password_hash(
                 $datos["contrasena"],
                 PASSWORD_DEFAULT
             ),
             "rol" => trim($datos["rol"]),            
-            "estado" => "Pendiente"
+            "estado" => "Activo"
         ];
 
         $this->usuarios[] = $nuevoUsuario;

@@ -32,6 +32,7 @@ class UsuarioController
             "nombre",
             "apellido",
             "documento",
+            "telefono",
             "correo",
             "contrasena",
             "rol"
@@ -77,13 +78,39 @@ class UsuarioController
                 "mensaje" => "El rol ingresado no es válido"
             ];
         }
-
-        // Controla que la contraseña tenga mínimo 8 caracteres.
-        if (strlen((string) $datos["contrasena"]) < 8) {
+        // Verifica que el telefono sean numeros para que sea valido 
+        if (!ctype_digit((string) $datos["telefono"])) {
             return [
                 "error" => true,
                 "codigo" => 400,
-                "mensaje" => "La contraseña debe tener al menos 8 caracteres"
+                "mensaje" => "El teléfono debe contener solamente números"
+            ];
+        }
+
+        // Controla que la contraseña tenga mínimo 6 caracteres.
+        if (strlen((string) $datos["contrasena"]) < 6) {
+            return [
+                "error" => true,
+                "codigo" => 400,
+                "mensaje" => "La contraseña debe tener al menos 6 caracteres"
+            ];
+        }
+                        // Verifica que el documento contenga solamente números
+        if (!ctype_digit((string) $datos["documento"])) {
+            return [
+                "error" => true,
+                "codigo" => 400,
+                "mensaje" => "El documento debe contener solamente números"
+            ];
+        }
+         // Verifica que el largo del documento ingresado 
+        $documento = trim((string) $datos["documento"]);
+
+        if (strlen($documento) < 7 || strlen($documento) > 8) {
+            return [
+                "error" => true,
+                "codigo" => 400,
+                "mensaje" => "El documento debe tener entre 7 y 8 números"
             ];
         }
 
@@ -95,6 +122,7 @@ class UsuarioController
                 "mensaje" => "Ya existe un usuario con ese documento"
             ];
         }
+
 
         // Verifica que no haya alguien con ese correo
         if ($this->modelo->existeCorreo($datos["correo"])) {
@@ -309,11 +337,11 @@ class UsuarioController
             ];
         }
 
-        if (strlen((string) $datos["contrasena"]) < 8) {
+        if (strlen((string) $datos["contrasena"]) < 6) {
             return [
                 "error" => true,
                 "codigo" => 400,
-                "mensaje" => "La contraseña debe tener al menos 8 caracteres"
+                "mensaje" => "La contraseña debe tener al menos 6 caracteres"
             ];
         }
 
