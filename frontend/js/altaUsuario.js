@@ -13,11 +13,7 @@ const iconoContrasena =
     document.getElementById("iconoContrasena");
 
 
-/*
-|--------------------------------------------------------------------------
-| Mostrar u ocultar contraseña
-|--------------------------------------------------------------------------
-*/
+/*Mostrar u ocultar contraseña*/
 
 btnMostrarContrasena.addEventListener("click", function () {
 
@@ -53,11 +49,7 @@ btnMostrarContrasena.addEventListener("click", function () {
 
 });
 
-/*
-|--------------------------------------------------------------------------
-| Envío del formulario
-|--------------------------------------------------------------------------
-*/
+/* Envía el formulario al apretar el boton es una funcion async y previene que se cargue la pagina*/
 
 formulario.addEventListener("submit", async function (event) {
 
@@ -65,11 +57,7 @@ formulario.addEventListener("submit", async function (event) {
 
     ocultarMensaje();
 
-    /*
-    |--------------------------------------------------------------------------
-    | Validación de Bootstrap
-    |--------------------------------------------------------------------------
-    */
+    /*Validación de codigo en Bootstrap para comprobar que todos los campos obligatorios esten cubiertos*/
 
     if (!formulario.checkValidity()) {
 
@@ -83,11 +71,7 @@ formulario.addEventListener("submit", async function (event) {
         return;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Obtener los datos
-    |--------------------------------------------------------------------------
-    */
+    /* Obtiene los datos del formulario y le saca los espacios al pricipio (funcion trim) y al final para evitar errores*/
 
     const nombre =
         document.getElementById("nombre").value.trim();
@@ -107,11 +91,7 @@ formulario.addEventListener("submit", async function (event) {
         document.getElementById("idRol").value;
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Validaciones propias
-    |--------------------------------------------------------------------------
-    */
+    /*Validaciones propias para cada elemento del formulario y muestra el color rojo(danger) si no cumple*/
 
     if (!validarSoloNumeros(cedula)) {
 
@@ -164,11 +144,7 @@ formulario.addEventListener("submit", async function (event) {
     }
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Datos enviados a UsuarioController.php
-    |--------------------------------------------------------------------------
-    */
+    /* Datos que son enviados a UsuarioController.php */
 
     const empleado = {
         nombre: nombre,
@@ -181,11 +157,8 @@ formulario.addEventListener("submit", async function (event) {
     };
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Petición a la API
-    |--------------------------------------------------------------------------
-    */
+    /* Aca es donde hacemos consumo o petición a la API con un try catch para mayor seguridad de 
+    "atrapar" un error en caso de que surja en tiempo de ejecucion y no se tranque el sistema*/
 
     try {
 
@@ -209,11 +182,7 @@ formulario.addEventListener("submit", async function (event) {
             }
         );
 
-        /*
-        |--------------------------------------------------------------------------
-        | Leer la respuesta del servidor
-        |--------------------------------------------------------------------------
-        */
+        /*Leemos la respuesta del servidor y devolvemos un error en caso de que pase algo al convertir la respuesta*/
 
         const textoRespuesta = await respuesta.text();
 
@@ -238,11 +207,7 @@ formulario.addEventListener("submit", async function (event) {
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Error enviado por la API
-        |--------------------------------------------------------------------------
-        */
+        /*Error enviado por la API en caso que falle lo anterior esto es lo que ve el cliente en su pantalla*/
 
         if (!respuesta.ok) {
 
@@ -257,11 +222,8 @@ formulario.addEventListener("submit", async function (event) {
         }
 
 
-        /*
-        |--------------------------------------------------------------------------
-        | Registro correcto
-        |--------------------------------------------------------------------------
-        */
+        /*Esta es la parte que nos  muestra Registro correcto en caso de que no haya problemas
+        se limpia el formulario*/
 
         mostrarMensaje(
             resultado.mensaje ||
@@ -299,20 +261,15 @@ formulario.addEventListener("submit", async function (event) {
 
 });
 /*
-|--------------------------------------------------------------------------
-| Validar que un dato contenga solamente números
-|--------------------------------------------------------------------------
-*/
+
+|Validar que un dato contenga solamente números*/
 function validarSoloNumeros(valor) {
 
     return /^[0-9]+$/.test(valor);
 
 }
-/*
-|--------------------------------------------------------------------------
-| Mostrar mensajes con Bootstrap
-|--------------------------------------------------------------------------
-*/
+
+/*Mostrar mensajes con Bootstrap*/
 function mostrarMensaje(texto, tipo) {
 
     mensajeRegistro.textContent = texto;
@@ -322,11 +279,7 @@ function mostrarMensaje(texto, tipo) {
 
 }
 
-/*
-|--------------------------------------------------------------------------
-| Ocultar mensajes
-|--------------------------------------------------------------------------
-*/
+/* Ocultar mensaje*/
 function ocultarMensaje() {
 
     mensajeRegistro.textContent = "";
@@ -336,11 +289,7 @@ function ocultarMensaje() {
 
 }
 
-/*
-|--------------------------------------------------------------------------
-| Bloquear el botón mientras se guarda
-|--------------------------------------------------------------------------
-*/
+/*Bloquear el botón mientras se guarda para evitar que se presione mas de 1 vez si esta "colgado" el servidor cargando algo*/
 function cambiarEstadoBoton(guardando) {
 
     if (guardando) {
