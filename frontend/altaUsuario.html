@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alta de empleado - SiGeRU</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Estilos del login y formularios -->
+    <link rel="stylesheet" href="css/stylesLogin.css">
+</head>
+
+<body class="login-body">
+
+    <main class="container min-vh-100 d-flex align-items-center py-5">
+
+        <div class="row justify-content-center w-100">
+
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+
+                <div class="card border-0 shadow-lg rounded-4">
+
+                    <div class="card-body p-4 p-md-5">
+
+                        <!-- Encabezado -->
+                        <div class="text-center mb-4">
+
+                            <img src="assets/images/SiGeRU.png" alt="Logo de SiGeRU" class="img-fluid mb-3"
+                                style="max-width: 170px;">
+
+                            <h1 class="h2 fw-bold mb-2">
+                                Alta de empleado
+                            </h1>
+
+                            <p class="text-muted mb-0">
+                                Ingrese los datos del empleado y asigne su rol dentro del sistema.
+                            </p>
+
+                        </div>
+
+                        <!-- Formulario -->
+                        <form id="registroUForm" novalidate>
+
+                            <!-- Datos personales -->
+                            <h2 class="h5 border-bottom pb-2 mb-3">
+                                <i class="bi bi-person-vcard me-2 text-success"></i>
+                                Datos personales
+                            </h2>
+
+                            <div class="row g-3">
+
+                                <!-- Nombre -->
+                                <div class="col-md-6">
+
+                                    <label for="nombre" class="form-label">
+
+                                        Nombre
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+
+                                        <input type="text" class="form-control" id="nombre" name="nombre"
+                                            placeholder="Ej.: Juan" maxlength="50" autocomplete="given-name" required>
+
+                                        <div class="invalid-feedback">
+                                            Ingrese el nombre del empleado.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Apellido -->
+                                <div class="col-md-6">
+
+                                    <label for="apellido" class="form-label">
+
+                                        Apellido
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person"></i>
+                                        </span>
+
+                                        <input type="text" class="form-control" id="apellido" name="apellido"
+                                            placeholder="Ej.: Pérez" maxlength="50" autocomplete="family-name" required>
+
+                                        <div class="invalid-feedback">
+                                            Ingrese el apellido del empleado.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Cédula -->
+                                <div class="col-md-6">
+
+                                    <label for="cedula" class="form-label">
+
+                                        Cédula
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-card-text"></i>
+                                        </span>
+
+                                        <input type="text" class="form-control" id="cedula" name="cedula"
+                                            placeholder="Ej.: 45678901" inputmode="numeric" minlength="7" maxlength="8"
+                                            autocomplete="off" required>
+
+                                        <div class="invalid-feedback">
+                                            Ingrese una cédula válida.
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-text">
+                                        Ingrese la cédula sin puntos ni guion.
+                                    </div>
+
+                                </div>
+
+                                <!-- Teléfono -->
+                                <div class="col-md-6">
+
+                                    <label for="telefono" class="form-label">
+
+                                        Teléfono
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-telephone"></i>
+                                        </span>
+
+                                        <input type="tel" class="form-control" id="telefono" name="telefono"
+                                            placeholder="Ej.: 099123456" inputmode="numeric" maxlength="9"
+                                            autocomplete="tel" required>
+
+                                        <div class="invalid-feedback">
+                                            Ingrese el teléfono del empleado.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Datos de acceso -->
+                            <h2 class="h5 border-bottom pb-2 mt-4 mb-3">
+                                <i class="bi bi-shield-lock me-2 text-success"></i>
+                                Datos de acceso
+                            </h2>
+
+                            <div class="row g-3">
+
+                                <!-- Correo -->
+                                <div class="col-12">
+
+                                    <label for="correo" class="form-label">
+
+                                        Correo electrónico
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-envelope"></i>
+                                        </span>
+
+                                        <input type="email" class="form-control" id="correo" name="correo"
+                                            placeholder="empleado@sigeru.com" maxlength="100" autocomplete="email"
+                                            required>
+
+                                        <div class="invalid-feedback">
+                                            Ingrese un correo electrónico válido.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Contraseña -->
+                                <div class="col-md-6">
+
+                                    <label for="contrasena" class="form-label">
+
+                                        Contraseña
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-lock"></i>
+                                        </span>
+
+                                        <input type="password" class="form-control" id="contrasena" name="contrasena"
+                                            placeholder="Ingrese una contraseña" minlength="6"
+                                            autocomplete="new-password" required>
+
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            id="btnMostrarContrasena" aria-label="Mostrar contraseña">
+
+                                            <i class="bi bi-eye" id="iconoContrasena">
+                                            </i>
+
+                                        </button>
+
+                                        <div class="invalid-feedback">
+                                            La contraseña debe tener al menos 6 caracteres.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- Confirmar contraseña -->
+                                <div class="col-md-6">
+
+                                    <label for="confirmarContrasena" class="form-label">
+
+                                        Confirmar contraseña
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-shield-check"></i>
+                                        </span>
+
+                                        <input type="password" class="form-control" id="confirmarContrasena"
+                                            name="confirmarContrasena" placeholder="Repita la contraseña" minlength="6"
+                                            autocomplete="new-password" required>
+
+                                        <div class="invalid-feedback">
+                                            Repita la contraseña.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Datos del sistema -->
+                            <h2 class="h5 border-bottom pb-2 mt-4 mb-3">
+                                <i class="bi bi-person-gear me-2 text-success"></i>
+                                Datos del sistema
+                            </h2>
+
+                            <div class="row g-3">
+
+                                <!-- Rol -->
+                                <div class="col-12">
+
+                                    <label for="idRol" class="form-label">
+
+                                        Rol del empleado
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <span class="input-group-text">
+                                            <i class="bi bi-person-badge"></i>
+                                        </span>
+
+                                        <select class="form-select" id="idRol" name="rol" required>
+
+                                            <option value="" selected disabled>
+                                                Seleccione un rol
+                                            </option>
+
+                                            <option value="Administrador">
+                                                Administrador
+                                            </option>
+
+                                            <option value="Operario">
+                                                Operario
+                                            </option>
+
+                                            <option value="Cuadrilla">
+                                                Cuadrilla
+                                            </option>
+
+                                        </select>
+
+                                        <div class="invalid-feedback">
+                                            Seleccione el rol del empleado.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- Mensaje de respuesta -->
+                            <div id="mensajeRegistro" class="alert d-none mt-4" role="alert">
+                            </div>
+
+                            <!-- Botones -->
+                            <div class="row g-3 mt-2">
+
+                                <div class="col-md-6">
+
+                                    <a href="dashboard.html" class="btn btn-outline-secondary w-100">
+
+                                        <i class="bi bi-x-circle me-2"></i>
+                                        Cancelar
+
+                                    </a>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <button type="submit" class="btn btn-success w-100" id="btnGuardarEmpleado">
+
+                                        <i class="bi bi-person-plus me-2"></i>
+                                        Guardar empleado
+
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="js/altaUsuario.js?v=2"></script>
+
+</body>
+
+</html>
