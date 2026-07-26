@@ -34,7 +34,7 @@ formularioLogin.addEventListener("submit", async function (evento) {
             setTimeout(function () {
                  console.log("Voy al dashboard");
                 window.location.href = "dashboard.html";
-            }, 5000);
+            }, 1000);
 
         } else {
             mensaje.textContent = resultado.mensaje;

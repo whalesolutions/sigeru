@@ -1,6 +1,5 @@
 
 const usuario = JSON.parse(localStorage.getItem("usuario"));
-
 const btnAcceder = document.getElementById("btnAcceder");
 const btnUsuario = document.getElementById("btnUsuario");
 const nombreUsuario = document.getElementById("nombreUsuario");

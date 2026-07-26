@@ -2,6 +2,8 @@ const sidebar = document.getElementById("sidebar");
 const btnMenu = document.getElementById("btnMenu");
 const sidebarOverlay = document.getElementById("sidebarOverlay");
 const btnCerrarSesion = document.getElementById("btnCerrarSesion");
+const nombreUsuario = document.getElementById("nombreUsuario");
+const rolUsuario = document.getElementById("rolUsuario");
 
 function abrirMenu() {
     sidebar.classList.add("mostrar");
@@ -24,6 +26,7 @@ if (sidebarOverlay) {
 if (btnCerrarSesion) {
 
     btnCerrarSesion.addEventListener("click", (evento) => {
+        evento.preventDefault();
         
         localStorage.removeItem("usuario");
         localStorage.removeItem("token");
