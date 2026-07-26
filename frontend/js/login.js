@@ -32,7 +32,7 @@ formularioLogin.addEventListener("submit", async function (evento) {
             mensaje.textContent = resultado.mensaje;
             mensaje.style.color = "green";
             setTimeout(function () {
-                window.location.href = "index.html";
+                window.location.href = "dashboard.html";
             }, 5000);
 
         } else {
