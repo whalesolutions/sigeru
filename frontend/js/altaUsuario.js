@@ -12,6 +12,7 @@ const btnMostrarContrasena =
 const iconoContrasena =
     document.getElementById("iconoContrasena");
 
+
 /*Mostrar u ocultar contraseña en el formulario al dar click en el visor*/
 
 btnMostrarContrasena.addEventListener("click", function () {

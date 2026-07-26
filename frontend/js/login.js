@@ -32,6 +32,7 @@ formularioLogin.addEventListener("submit", async function (evento) {
             mensaje.textContent = resultado.mensaje;
             mensaje.style.color = "green";
             setTimeout(function () {
+                 console.log("Voy al dashboard");
                 window.location.href = "dashboard.html";
             }, 5000);
 

@@ -1,4 +1,3 @@
-console.log("SiGeRU loaded V2");
 
 const usuario = JSON.parse(localStorage.getItem("usuario"));
 

@@ -22,8 +22,23 @@ if (sidebarOverlay) {
 }
 
 if (btnCerrarSesion) {
-    btnCerrarSesion.addEventListener("click", () => {
+
+    btnCerrarSesion.addEventListener("click", (evento) => {
+        
         localStorage.removeItem("usuario");
         localStorage.removeItem("token");
+        window.location.href = "login.html";
     });
+}
+
+/* Pra el dashboard muestra el usuario logeado */
+const usuarioGuardado = localStorage.getItem("usuario");
+
+if (!usuarioGuardado) {
+    window.location.href = "login.html";
+} else {
+    const usuario = JSON.parse(usuarioGuardado);
+
+    nombreUsuario.textContent = usuario.nombre;
+    rolUsuario.textContent = usuario.rol;
 }
