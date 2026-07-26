@@ -7,6 +7,7 @@ $controller = new CamionController();
 $metodo = $_SERVER["REQUEST_METHOD"];
 
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+
 $segmentos = array_values(
     array_filter(
         explode("/", trim($uri, "/"))
@@ -18,7 +19,11 @@ $segmentos = array_values(
  * Esto permite que funcione aunque la API esté dentro
  * de una carpeta adicional.
  */
-$posicionCamiones = array_search("camiones", $segmentos, true);
+$posicionCamiones = array_search(
+    "camiones",
+    $segmentos,
+    true
+);
 
 if ($posicionCamiones === false) {
     responder([
@@ -44,8 +49,6 @@ if (isset($segmentos[$posicionCamiones + 1])) {
     $id = (int) $segmentoId;
 }
 
-$datos = obtenerCuerpoJson();
-
 switch ($metodo) {
     case "GET":
         if ($id === null) {
@@ -63,9 +66,11 @@ switch ($metodo) {
                 "error" => true,
                 "codigo" => 405,
                 "mensaje" =>
-                "No se puede crear un camión indicando un ID."
+                    "No se puede crear un camión indicando un ID."
             ]);
         }
+
+        $datos = obtenerCuerpoJson();
 
         $resultado = $controller->crear($datos);
 
@@ -79,11 +84,16 @@ switch ($metodo) {
                 "error" => true,
                 "codigo" => 400,
                 "mensaje" =>
-                "Debe indicar el ID del camión que desea actualizar."
+                    "Debe indicar el ID del camión que desea actualizar."
             ]);
         }
 
-        $resultado = $controller->actualizar($id, $datos);
+        $datos = obtenerCuerpoJson();
+
+        $resultado = $controller->actualizar(
+            $id,
+            $datos
+        );
 
         responder($resultado);
         break;
@@ -94,7 +104,7 @@ switch ($metodo) {
                 "error" => true,
                 "codigo" => 400,
                 "mensaje" =>
-                "Debe indicar el ID del camión que desea eliminar."
+                    "Debe indicar el ID del camión que desea eliminar."
             ]);
         }
 
@@ -118,7 +128,10 @@ function obtenerCuerpoJson(): array
 {
     $contenido = file_get_contents("php://input");
 
-    if ($contenido === false || trim($contenido) === "") {
+    if (
+        $contenido === false ||
+        trim($contenido) === ""
+    ) {
         return [];
     }
 
@@ -128,7 +141,8 @@ function obtenerCuerpoJson(): array
         responder([
             "error" => true,
             "codigo" => 400,
-            "mensaje" => "El cuerpo de la solicitud no contiene JSON válido."
+            "mensaje" =>
+                "El cuerpo de la solicitud no contiene JSON válido."
         ]);
     }
 
@@ -136,29 +150,10 @@ function obtenerCuerpoJson(): array
         responder([
             "error" => true,
             "codigo" => 400,
-            "mensaje" => "El cuerpo JSON debe ser un objeto."
+            "mensaje" =>
+                "El cuerpo JSON debe ser un objeto."
         ]);
     }
 
     return $datos;
-}
-
-/**
- * Envía la respuesta en formato JSON.
- */
-function responder(array $resultado): void
-{
-    $codigo = $resultado["codigo"] ?? 500;
-
-    http_response_code($codigo);
-
-    header("Content-Type: application/json; charset=UTF-8");
-
-    echo json_encode(
-        $resultado,
-        JSON_UNESCAPED_UNICODE |
-            JSON_PRETTY_PRINT
-    );
-
-    exit;
 }
