@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Panel de administración - SiGeRU</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -106,22 +104,27 @@
                     <i class="bi bi-chevron-down flecha-submenu"></i>
                 </button>
                 <div id="submenuContenedores" class="collapse submenu">
-                    <a href="#" class="nav-link submenu-link disabled">
+
+                    <a href="altaContenedor.html" class="nav-link submenu-link">
                         <i class="bi bi-plus-circle me-2"></i>
                         Alta de contenedor
                     </a>
-                    <a href="#" class="nav-link submenu-link disabled">
+
+                    <a href="listadoContenedores.html" class="nav-link submenu-link">
                         <i class="bi bi-search me-2"></i>
                         Consultar contenedores
                     </a>
-                    <a href="#" class="nav-link submenu-link disabled">
+
+                    <a href="#" class="nav-link submenu-link disabled" aria-disabled="true">
                         <i class="bi bi-pencil-square me-2"></i>
                         Modificar contenedor
                     </a>
-                    <a href="#" class="nav-link submenu-link disabled">
+
+                    <a href="#" class="nav-link submenu-link disabled" aria-disabled="true">
                         <i class="bi bi-x-circle me-2"></i>
                         Baja de contenedor
                     </a>
+
                 </div>
 
                 <!-- Gestión de camiones -->
@@ -389,20 +392,21 @@
                                 <p class="text-secondary">
                                     Registre, consulte y administre los contenedores.
                                 </p>
+                                
                                 <div class="row g-2 mt-auto">
 
                                     <div class="col-6">
-                                        <button class="btn btn-success w-100" type="button" disabled>
+                                        <a href="altaContenedor.html" class="btn btn-success w-100">
                                             <i class="bi bi-plus-circle me-1"></i>
                                             Alta
-                                        </button>
+                                        </a>
                                     </div>
 
                                     <div class="col-6">
-                                        <button class="btn btn-outline-success w-100" type="button" disabled>
+                                        <a href="listadoContenedores.html" class="btn btn-outline-success w-100">
                                             <i class="bi bi-search me-1"></i>
                                             Consultar
-                                        </button>
+                                        </a>
                                     </div>
 
                                     <div class="col-6">
