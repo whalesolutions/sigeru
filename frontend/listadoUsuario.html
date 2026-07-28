@@ -4,181 +4,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>SiGeRU | Listado de Usuarios</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/backoffice.css">
 </head>
 
-<body class="bg-light">
+<body class="backoffice-body">>
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-11">
 
-    <div class="container py-5">
+                <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
 
-        <div class="card border-0 shadow">
+                    <!-- Encabezado -->
+                    <div class="card-header bg-success text-white p-4">
 
-            <div class="card-header bg-success text-white py-3">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
 
-                <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h1 class="h3 mb-1">
+                                    <i class="bi bi-people-fill me-2"></i>
+                                    Listado de Usuarios
+                                </h1>
 
-                    <div>
-                        <h2 class="mb-1">
-                            Listado de Usuarios
-                        </h2>
+                                <p class="mb-0 opacity-75">
+                                    Consulta de usuarios registrados en el sistema.
+                                </p>
+                            </div>
 
-                        <small>
-                            Consulta de usuarios registrados en SiGeRU
-                        </small>
-                    </div>
-
-                    <a href="dashboard.html" class="btn btn-light">
-                        <i class="bi bi-arrow-left me-1"></i>
-                        Volver
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="card-body">
-
-                <div class="row mb-4">
-
-                    <div class="col-md-7">
-
-                        <div class="input-group">
-
-                            <span class="input-group-text">
-                                <i class="bi bi-search"></i>
-                            </span>
-
-                            <input type="text" class="form-control" id="buscarUsuario"
-                                placeholder="Buscar por nombre, documento o correo">
+                            <a href="dashboard.html" class="btn btn-light flex-shrink-0">
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Volver
+                            </a>
 
                         </div>
 
                     </div>
 
-                    <div class="col-md-5 text-md-end mt-3 mt-md-0">
+                    <!-- Contenido -->
+                    <div class="card-body p-4 p-md-5">
 
-                        <span class="badge bg-success fs-6 px-3 py-2">
-                            Total:
-                            <span id="totalUsuarios">0</span>
-                        </span>
+                        <!-- Buscador -->
+                        <div class="card border-success mb-4">
+
+                            <div class="card-header bg-light">
+                                <h2 class="h5 mb-0">
+                                    <i class="bi bi-search text-success me-2"></i>
+                                    Buscar usuario
+                                </h2>
+                            </div>
+
+                            <div class="card-body">
+
+                                <div class="row align-items-center g-3">
+
+                                    <div class="col-md-8">
+
+                                        <div class="input-group">
+
+                                            <span class="input-group-text">
+                                                <i class="bi bi-search"></i>
+                                            </span>
+
+                                            <input type="search" id="buscarUsuario" class="form-control"
+                                                placeholder="Buscar por nombre, documento o correo" autocomplete="off">
+
+                                        </div>
+
+                                        <div class="form-text">
+                                            Los resultados se filtran a medida que escribe.
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-4 text-md-end">
+
+                                        <span class="badge bg-success fs-6 px-3 py-2">
+                                            Total:
+                                            <span id="totalUsuarios">0</span>
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Mensajes -->
+
+                        <div id="mensajeUsuarios" class="alert alert-info d-none" role="alert">
+                        </div>
+
+                        <!-- Tabla donde carga la info vbasica del Usuario -->
+
+                        <div class="card border-success">
+
+                            <div class="card-header bg-light">
+
+                                <h2 class="h5 mb-0">
+                                    <i class="bi bi-list-ul text-success me-2"></i>
+                                    Usuarios registrados
+                                </h2>
+
+                            </div>
+
+                            <div class="table-responsive">
+
+                                <table class="table table-hover align-middle mb-0">
+
+                                    <thead class="table-success">
+
+                                        <tr>
+                                            <th>Documento</th>
+                                            <th>Nombre completo</th>
+                                            <th>Rol</th>
+                                            <th>Estado</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody id="tablaUsuarios">
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <div class="table-responsive">
-
-                    <table class="table table-hover align-middle mb-0">
-
-                        <thead class="table-success">
-
-                            <tr>
-                                <th>Documento</th>
-                                <th>Nombre completo</th>
-                                <th>Rol</th>
-                                <th>Estado</th>
-                                <th class="text-center">Acción</th>
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tablaUsuarios">
-
-                            <!-- Las filas se generan desde JavaScript -->
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-                <div id="mensajeUsuarios" class="alert alert-info text-center mt-3 d-none">
-                    No se encontraron usuarios.
-                </div>
-
             </div>
-
-            <div class="card-footer bg-white text-center text-muted">
-
-                Sistema de Gestión de Residuos Urbanos
-
-            </div>
-
         </div>
 
-    </div>
+    </main>
 
-    <!-- Modal de detalle -->
+    <!-- Modal que muestra la info detallada del usuario -->
 
     <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="tituloModalUsuario" aria-hidden="true">
 
         <div class="modal-dialog modal-dialog-centered">
 
-            <div class="modal-content">
+            <div class="modal-content border-0 shadow">
 
                 <div class="modal-header bg-success text-white">
 
                     <h5 class="modal-title" id="tituloModalUsuario">
+
                         <i class="bi bi-person-circle me-2"></i>
+
                         Información del usuario
+
                     </h5>
 
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar">
+                    </button>
 
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body p-4">
 
-                    <div class="row g-3">
-
-                        <div class="col-md-6">
-                            <small class="text-muted">ID</small>
-                            <p class="fw-semibold mb-0" id="modalId"></p>
+                    <div class="row border-bottom py-2">
+                        <div class="col-5">
+                            <strong>ID:</strong>
                         </div>
 
-                        <div class="col-md-6">
-                            <small class="text-muted">Documento</small>
-                            <p class="fw-semibold mb-0" id="modalDocumento"></p>
+                        <div class="col-7" id="modalId"></div>
+                    </div>
+
+                    <div class="row border-bottom py-2">
+                        <div class="col-5">
+                            <strong>Documento:</strong>
                         </div>
 
-                        <div class="col-md-6">
-                            <small class="text-muted">Nombre</small>
-                            <p class="fw-semibold mb-0" id="modalNombre"></p>
+                        <div class="col-7" id="modalDocumento"></div>
+                    </div>
+
+                    <div class="row border-bottom py-2">
+                        <div class="col-5">
+                            <strong>Nombre:</strong>
                         </div>
 
-                        <div class="col-md-6">
-                            <small class="text-muted">Apellido</small>
-                            <p class="fw-semibold mb-0" id="modalApellido"></p>
+                        <div class="col-7" id="modalNombre"></div>
+                    </div>
+
+                    <div class="row border-bottom py-2">
+                        <div class="col-5">
+                            <strong>Apellido:</strong>
                         </div>
 
-                        <div class="col-md-6">
-                            <small class="text-muted">Teléfono</small>
-                            <p class="fw-semibold mb-0" id="modalTelefono"></p>
+                        <div class="col-7" id="modalApellido"></div>
+                    </div>
+
+                    <div class="row border-bottom py-2">
+                        <div class="col-5">
+                            <strong>Teléfono:</strong>
                         </div>
 
-                        <div class="col-md-6">
-                            <small class="text-muted">Rol</small>
-                            <p class="fw-semibold mb-0" id="modalRol"></p>
+                        <div class="col-7" id="modalTelefono"></div>
+                    </div>
+
+                    <div class="row border-bottom py-2">
+                        <div class="col-5">
+                            <strong>Rol:</strong>
                         </div>
 
-                        <div class="col-12">
-                            <small class="text-muted">Correo electrónico</small>
-                            <p class="fw-semibold mb-0" id="modalCorreo"></p>
+                        <div class="col-7" id="modalRol"></div>
+                    </div>
+
+                    <div class="row border-bottom py-2">
+                        <div class="col-5">
+                            <strong>Correo:</strong>
                         </div>
 
-                        <div class="col-12">
-                            <small class="text-muted">Estado</small>
-                            <div class="mt-1">
-                                <span id="modalEstado" class="badge"></span>
-                            </div>
+                        <div class="col-7" id="modalCorreo"></div>
+                    </div>
+
+                    <div class="row py-2">
+                        <div class="col-5">
+                            <strong>Estado:</strong>
                         </div>
 
+                        <div class="col-7">
+                            <span id="modalEstado" class="badge"></span>
+                        </div>
                     </div>
 
                 </div>
@@ -186,7 +241,10 @@
                 <div class="modal-footer">
 
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+
+                        <i class="bi bi-x-lg me-1"></i>
                         Cerrar
+
                     </button>
 
                 </div>
@@ -198,8 +256,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="js/listadoUsuario.js"></script>
+    <script src="js/listadoUsuario.js?v=2"></script>
 
 </body>
 

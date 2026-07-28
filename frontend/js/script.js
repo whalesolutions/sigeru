@@ -15,23 +15,53 @@ if (usuario) {
     });
 }
 
-var map = L.map('map').setView([-32.5228, -55.7658], 7);
+var map = L.map('map').setView([-34.9011, -56.1645], 12);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-L.marker([-34.9011, -56.1645]).addTo(map)
-    .bindPopup("Montevideo");
+const iconoContenedor = L.icon({
+    iconUrl: "assets/images/dumpster.png",
+    iconSize: [38, 38],
+    iconAnchor: [19, 38],
+    popupAnchor: [0, -35]
+});
+const iconoCiudad = L.icon({
+    iconUrl: "assets/images/city.png",
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -35]
+});
 
-L.marker([-34.905, -54.958]).addTo(map)
-    .bindPopup("Maldonado");
+L.marker(
+    [-34.9011, -56.1645],
+    {
+        icon: iconoCiudad
+    }
+)
+.addTo(map)
+.bindPopup("<strong>Montevideo</strong>");;
 
-L.marker([-31.383, -57.968]).addTo(map)
-    .bindPopup("Salto");
+L.marker(
+    [-34.905, -54.958],
+    {
+        icon: iconoCiudad
+    }
+)
+.addTo(map)
+.bindPopup("<strong>Maldonado</strong>");
 
+L.marker(
+    [-31.383, -57.968],
+    {
+        icon: iconoCiudad
+    }
+)
+.addTo(map)
+.bindPopup("<strong>Salto</strong>");
 
-const volquetas = [
+const contenedores = [
 
     {
         nombre: "V001 Ciudad Vieja",
@@ -55,12 +85,6 @@ const volquetas = [
         nombre: "V004 Palermo",
         lat: -34.9124,
         lng: -56.1845
-    },
-
-    {
-        nombre: "V005 Parque Rodó",
-        lat: -34.9168,
-        lng: -56.1722
     },
 
     {
@@ -152,7 +176,106 @@ const volquetas = [
         lat: -34.7900,
         lng: -56.2272
 
+    }
+    ,
+    {
+        nombre: "C021 Parque Batlle",
+        lat: -34.8928,
+        lng: -56.1512
     },
+
+    {
+        nombre: "C022 Parque Batlle",
+        lat: -34.8951,
+        lng: -56.1568
+    },
+
+    {
+        nombre: "C023 Villa Dolores",
+        lat: -34.9036,
+        lng: -56.1359
+    },
+    {
+        nombre: "C024 Pocitos",
+        lat: -34.9095,
+        lng: -56.1448
+    },
+    {
+        nombre: "C026 Punta Carretas",
+        lat: -34.9201,
+        lng: -56.1578
+    },
+    {
+        nombre: "C027 Parque Rodó",
+        lat: -34.9164,
+        lng: -56.1687
+    },
+    {
+        nombre: "C028 Centro",
+        lat: -34.9046,
+        lng: -56.1872
+    },
+    {
+        nombre: "C029 Centro",
+        lat: -34.9002,
+        lng: -56.1854
+    },
+    {
+        nombre: "C030 Aguada",
+        lat: -34.8960,
+        lng: -56.1983
+    },
+    {
+        nombre: "C031 Bella Vista",
+        lat: -34.8885,
+        lng: -56.1952
+    },
+    {
+        nombre: "C032 Prado",
+        lat: -34.8561,
+        lng: -56.1988
+    },
+    {
+        nombre: "C033 Sayago",
+        lat: -34.8457,
+        lng: -56.2151
+    },
+    {
+        nombre: "C034 Colón",
+        lat: -34.8112,
+        lng: -56.2146
+    },
+    {
+        nombre: "C035 Peñarol",
+        lat: -34.8569,
+        lng: -56.2474
+    },
+    {
+        nombre: "C036 Cerro",
+        lat: -34.8868,
+        lng: -56.2574
+    },
+    {
+        nombre: "C037 Casabó",
+        lat: -34.8945,
+        lng: -56.2765
+    },
+    {
+        nombre: "C038 Malvín",
+        lat: -34.8914,
+        lng: -56.1016
+    },
+    {
+        nombre: "C039 Carrasco",
+        lat: -34.8899,
+        lng: -56.0583
+    },
+    {
+        nombre: "C040 Buceo",
+        lat: -34.8990,
+        lng: -56.1253
+    },
+
 
     // Muestras
 
@@ -194,13 +317,16 @@ const volquetas = [
 
 ];
 
-
-volquetas.forEach(v => {
-    L.marker([v.lat, v.lng])
+contenedores.forEach(function (contenedor) {
+    L.marker(
+        [contenedor.lat, contenedor.lng],
+        {
+            icon: iconoContenedor
+        }
+    )
         .addTo(map)
         .bindPopup(`
-            <strong>${v.nombre}</strong><br>
-            ${v.ciudad}<br>
-            ${v.departamento}
+            <strong>${contenedor.nombre}</strong><br>
+            Contenedor de residuos
         `);
 });

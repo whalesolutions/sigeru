@@ -104,6 +104,7 @@ function mostrarCamiones(listaCamiones) {
         fila.innerHTML = `
             <td>${camion.matricula}</td>
             <td>${camion.marca}</td>
+             <td>${camion.modelo}</td>
             <td>${obtenerBadgeEstado(camion.estado)}</td>
 
             <td class="text-center">

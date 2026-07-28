@@ -1,0 +1,14 @@
+.backoffice-body {
+    background:
+        linear-gradient(rgba(0, 0, 0, .18), rgba(0, 0, 0, .18)),
+        url("../assets/images/listbackgraund.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.backoffice-card {
+    background: #f8f9fa;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+}
