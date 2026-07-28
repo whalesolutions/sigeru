@@ -2,36 +2,48 @@
 
 class Contenedor
 {
-    // Simulación temporal de una base de datos mediante un arreglo.
-    private array $contenedores = [
-        [
-            "id" => 1,
-            "codigo" => "CH-001",
-            "direccion" => "José Ellauri esq. Solano García, Montevideo",
-            "longitud" => -56.1635,
-            "latitud" => -34.9068,
-            "estado" => "Inactivo",
-            "capacidadMaxima" => 3200,
-            "capacidadActual" => 1800
-        ],
-        [
-            "id" => 2,
-            "codigo" => "CH-002",
-            "direccion" => "Av. Tomás Basañez 1212, Montevideo",
-            "longitud" => -56.1345,
-            "latitud" => -34.8932,
-            "estado" => "Activo",
-            "capacidadMaxima" => 800,
-            "capacidadActual" => 250
-        ]
-    ];
+    /**
+     * Inicializa los contenedores simulados solamente
+     * cuando todavía no existen en la sesión.
+     */
+    public function __construct()
+    {
+        if (!isset($_SESSION["contenedores"])) {
+            $_SESSION["contenedores"] = [
+                [
+                    "id" => 1,
+                    "codigo" => "CH-001",
+                    "direccion" =>
+                        "José Ellauri esq. Solano García, Montevideo",
+                    "longitud" => -56.1635,
+                    "latitud" => -34.9068,
+                    "estado" => "Inactivo",
+                    "capacidadMaxima" => 3200,
+                    "capacidadActual" => 1800,
+                    "fechaInstalacion" => "2026-07-01"
+                ],
+                [
+                    "id" => 2,
+                    "codigo" => "CH-002",
+                    "direccion" =>
+                        "Av. Tomás Basañez 1212, Montevideo",
+                    "longitud" => -56.1345,
+                    "latitud" => -34.8932,
+                    "estado" => "Activo",
+                    "capacidadMaxima" => 800,
+                    "capacidadActual" => 250,
+                    "fechaInstalacion" => "2026-07-10"
+                ]
+            ];
+        }
+    }
 
     /**
      * Devuelve todos los contenedores.
      */
     public function obtenerTodos(): array
     {
-        return $this->contenedores;
+        return $_SESSION["contenedores"];
     }
 
     /**
@@ -39,8 +51,8 @@ class Contenedor
      */
     public function obtenerPorId(int $id): ?array
     {
-        foreach ($this->contenedores as $contenedor) {
-            if ($contenedor["id"] === $id) {
+        foreach ($_SESSION["contenedores"] as $contenedor) {
+            if ((int) $contenedor["id"] === $id) {
                 return $contenedor;
             }
         }
@@ -49,10 +61,11 @@ class Contenedor
     }
 
     /**
-     * Comprueba si ya existe un contenedor con el código indicado.
+     * Comprueba si ya existe un contenedor
+     * con el código indicado.
      *
-     * El parámetro $idExcluir permite ignorar el propio registro
-     * durante una actualización.
+     * El parámetro $idExcluir permite ignorar
+     * el registro actual durante una actualización.
      */
     public function existeCodigo(
         string $codigo,
@@ -60,13 +73,14 @@ class Contenedor
     ): bool {
         $codigoBuscado = strtoupper(trim($codigo));
 
-        foreach ($this->contenedores as $contenedor) {
+        foreach ($_SESSION["contenedores"] as $contenedor) {
             $mismoCodigo =
-                strtoupper($contenedor["codigo"]) === $codigoBuscado;
+                strtoupper(trim($contenedor["codigo"])) ===
+                $codigoBuscado;
 
             $esOtroContenedor =
                 $idExcluir === null ||
-                $contenedor["id"] !== $idExcluir;
+                (int) $contenedor["id"] !== $idExcluir;
 
             if ($mismoCodigo && $esOtroContenedor) {
                 return true;
@@ -81,22 +95,40 @@ class Contenedor
      */
     public function crear(array $datos): array
     {
-        $nuevoId = $this->generarNuevoId();
-
         $nuevoContenedor = [
-            "id" => $nuevoId,
+            "id" => $this->generarNuevoId(),
+
             "codigo" => strtoupper(
                 trim((string) $datos["codigo"])
             ),
-            "direccion" => trim((string) $datos["direccion"]),
+
+            "direccion" => trim(
+                (string) $datos["direccion"]
+            ),
+
             "longitud" => (float) $datos["longitud"],
+
             "latitud" => (float) $datos["latitud"],
-            "estado" => trim((string) $datos["estado"]),
-            "capacidadMaxima" => (int) $datos["capacidadMaxima"],
-            "capacidadActual" => (int) $datos["capacidadActual"]
+
+            "estado" => trim(
+                (string) $datos["estado"]
+            ),
+
+            "capacidadMaxima" =>
+                (int) $datos["capacidadMaxima"],
+
+            "capacidadActual" =>
+                isset($datos["capacidadActual"])
+                ? (int) $datos["capacidadActual"]
+                : 0,
+
+            "fechaInstalacion" =>
+                isset($datos["fechaInstalacion"])
+                ? trim((string) $datos["fechaInstalacion"])
+                : null
         ];
 
-        $this->contenedores[] = $nuevoContenedor;
+        $_SESSION["contenedores"][] = $nuevoContenedor;
 
         return $nuevoContenedor;
     }
@@ -104,28 +136,51 @@ class Contenedor
     /**
      * Actualiza un contenedor por su ID.
      */
-    public function actualizar(int $id, array $datos): ?array
-    {
-        foreach ($this->contenedores as $indice => $contenedor) {
-            if ($contenedor["id"] === $id) {
-                $this->contenedores[$indice] = [
+    public function actualizar(
+        int $id,
+        array $datos
+    ): ?array {
+        foreach (
+            $_SESSION["contenedores"] as $indice => $contenedor
+        ) {
+            if ((int) $contenedor["id"] === $id) {
+                $_SESSION["contenedores"][$indice] = [
                     "id" => $id,
+
                     "codigo" => strtoupper(
                         trim((string) $datos["codigo"])
                     ),
+
                     "direccion" => trim(
                         (string) $datos["direccion"]
                     ),
+
                     "longitud" => (float) $datos["longitud"],
+
                     "latitud" => (float) $datos["latitud"],
-                    "estado" => trim((string) $datos["estado"]),
+
+                    "estado" => trim(
+                        (string) $datos["estado"]
+                    ),
+
                     "capacidadMaxima" =>
                         (int) $datos["capacidadMaxima"],
+
                     "capacidadActual" =>
-                        (int) $datos["capacidadActual"]
+                        (int) $datos["capacidadActual"],
+
+                    "fechaInstalacion" =>
+                        isset($datos["fechaInstalacion"])
+                        ? trim(
+                            (string) $datos["fechaInstalacion"]
+                        )
+                        : (
+                            $contenedor["fechaInstalacion"]
+                            ?? null
+                        )
                 ];
 
-                return $this->contenedores[$indice];
+                return $_SESSION["contenedores"][$indice];
             }
         }
 
@@ -137,12 +192,14 @@ class Contenedor
      */
     public function eliminar(int $id): bool
     {
-        foreach ($this->contenedores as $indice => $contenedor) {
-            if ($contenedor["id"] === $id) {
-                unset($this->contenedores[$indice]);
+        foreach (
+            $_SESSION["contenedores"] as $indice => $contenedor
+        ) {
+            if ((int) $contenedor["id"] === $id) {
+                unset($_SESSION["contenedores"][$indice]);
 
-                $this->contenedores =
-                    array_values($this->contenedores);
+                $_SESSION["contenedores"] =
+                    array_values($_SESSION["contenedores"]);
 
                 return true;
             }
@@ -156,8 +213,15 @@ class Contenedor
      */
     private function generarNuevoId(): int
     {
-        $ids = array_column($this->contenedores, "id");
+        if (empty($_SESSION["contenedores"])) {
+            return 1;
+        }
 
-        return empty($ids) ? 1 : max($ids) + 1;
+        $ids = array_column(
+            $_SESSION["contenedores"],
+            "id"
+        );
+
+        return max($ids) + 1;
     }
 }

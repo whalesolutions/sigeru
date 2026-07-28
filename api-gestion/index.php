@@ -1,5 +1,8 @@
 <?php
 
+
+session_start();
+
 header("Content-Type: application/json; charset=UTF-8");
 
 $ruta = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
