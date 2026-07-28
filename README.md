@@ -64,27 +64,19 @@ Abrir el Panel de Control de XAMPP e iniciar:
 ## 3. Abrir el sistema
 
 Credenciales
-
 User: rodrimorelli22@gmail.com
 Password: Rodrigo123
 
 El archivo index se encuentra dentro de la carpeta **frontend**.
 
-Ingresar desde el navegador a:
+## Acceso al sistema
+Si Apache utiliza el puerto predeterminado (80), acceder a:
 
-```text
-http://localhost/sigeru/frontend/
-```
-
-o abrir directamente el archivo correspondiente:
-
-```text
 http://localhost/sigeru/frontend/index.html
-```
 
+Si Apache está configurado para utilizar otro puerto (por ejemplo, 8080), acceder a:
 
-
----
+http://localhost:8080/sigeru/frontend/index.html
 
 ## 4. APIs
 
