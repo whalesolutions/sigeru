@@ -1,5 +1,3 @@
-# sigeru
-SiGeRU - Urban Waste Management System
 # SiGeRU - Sistema de Gestión de Residuos Urbanos
 
 ## Equipo
@@ -65,6 +63,11 @@ Abrir el Panel de Control de XAMPP e iniciar:
 
 ## 3. Abrir el sistema
 
+Credenciales
+
+User: rodrimorelli22@gmail.com
+Password: Rodrigo123
+
 El archivo index se encuentra dentro de la carpeta **frontend**.
 
 Ingresar desde el navegador a:
@@ -78,6 +81,8 @@ o abrir directamente el archivo correspondiente:
 ```text
 http://localhost/sigeru/frontend/index.html
 ```
+
+
 
 ---
 
