@@ -28,7 +28,6 @@ formulario.addEventListener("submit", async function (evento) {
     const longitud = Number(inputLongitud.value);
     const estado = selectEstado.value;
     const capacidadMaxima = Number(inputCapacidadMaxima.value);
-    const capacidadActual = Number(inputCapacidadActual.value);
 
     /* Validación de la identificacion del contenedor osea el formato*/
     if (!codigoValido(codigo)) {
@@ -41,17 +40,6 @@ formulario.addEventListener("submit", async function (evento) {
         return;
     }
 
-     /* Validación para el futuro aunque  no deberia usarse ya que deberia crearse con capacidad actual 0 por ser nuevo a menos que se agregue uno al recorrido  que antes no estaba o se mueva*/
-    if (capacidadActual > capacidadMaxima) {
-        mostrarMensaje(
-            "La capacidad actual no puede superar la capacidad máxima.",
-            "danger"
-        );
-
-        inputCapacidadActual.focus();
-        return;
-    }
-
     const contenedor = {
         codigo,
         direccion,
@@ -59,7 +47,7 @@ formulario.addEventListener("submit", async function (evento) {
         longitud,
         estado,
         capacidadMaxima,
-        capacidadActual
+        capacidadActual: 0
     };
 
     /* Se hace el consumo de la API para crear el contenedor */
