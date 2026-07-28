@@ -2,34 +2,42 @@
 
 class Camion
 {
-    // Simulación temporal de una base de datos mediante un arreglo.
-    private array $camiones = [
-        [
-            "id" => 1,
-            "matricula" => "STC-1234",
-            "marca" => "Mercedes-Benz",
-            "modelo" => "Atego 1726",
-            "capacidadCarga" => 12000.0,
-            "kilometraje" => 85400.0,
-            "estado" => "Disponible"
-        ],
-        [
-            "id" => 2,
-            "matricula" => "SAB-5678",
-            "marca" => "Volkswagen",
-            "modelo" => "Constellation 17.280",
-            "capacidadCarga" => 11000.0,
-            "kilometraje" => 132500.0,
-            "estado" => "En mantenimiento"
-        ]
-    ];
+    /**
+     * Inicializa los datos simulados únicamente
+     * si todavía no existen en la sesión.
+     */
+    public function __construct()
+    {
+        if (!isset($_SESSION["camiones"])) {
+            $_SESSION["camiones"] = [
+                [
+                    "id" => 1,
+                    "matricula" => "STC-1234",
+                    "marca" => "Mercedes-Benz",
+                    "modelo" => "Atego 1726",
+                    "capacidadCarga" => 12000.0,
+                    "kilometraje" => 85400.0,
+                    "estado" => "Disponible"
+                ],
+                [
+                    "id" => 2,
+                    "matricula" => "SAB-5678",
+                    "marca" => "Volkswagen",
+                    "modelo" => "Constellation 17.280",
+                    "capacidadCarga" => 11000.0,
+                    "kilometraje" => 132500.0,
+                    "estado" => "En mantenimiento"
+                ]
+            ];
+        }
+    }
 
     /**
      * Devuelve todos los camiones.
      */
     public function obtenerTodos(): array
     {
-        return $this->camiones;
+        return $_SESSION["camiones"];
     }
 
     /**
@@ -37,8 +45,8 @@ class Camion
      */
     public function obtenerPorId(int $id): ?array
     {
-        foreach ($this->camiones as $camion) {
-            if ($camion["id"] === $id) {
+        foreach ($_SESSION["camiones"] as $camion) {
+            if ((int) $camion["id"] === $id) {
                 return $camion;
             }
         }
@@ -58,14 +66,14 @@ class Camion
     ): bool {
         $matriculaBuscada = strtoupper(trim($matricula));
 
-        foreach ($this->camiones as $camion) {
+        foreach ($_SESSION["camiones"] as $camion) {
             $mismaMatricula =
                 strtoupper(trim($camion["matricula"])) ===
                 $matriculaBuscada;
 
             $esOtroCamion =
                 $idExcluir === null ||
-                $camion["id"] !== $idExcluir;
+                (int) $camion["id"] !== $idExcluir;
 
             if ($mismaMatricula && $esOtroCamion) {
                 return true;
@@ -82,17 +90,33 @@ class Camion
     {
         $nuevoCamion = [
             "id" => $this->generarNuevoId(),
+
             "matricula" => strtoupper(
                 trim((string) $datos["matricula"])
             ),
-            "marca" => trim((string) $datos["marca"]),
-            "modelo" => trim((string) $datos["modelo"]),
-            "capacidadCarga" => (float) $datos["capacidadCarga"],
-            "kilometraje" => (float) $datos["kilometraje"],
-            "estado" => trim((string) $datos["estado"])
+
+            "marca" => trim(
+                (string) $datos["marca"]
+            ),
+
+            "modelo" => trim(
+                (string) $datos["modelo"]
+            ),
+
+            "capacidadCarga" =>
+                (float) $datos["capacidadCarga"],
+
+            "kilometraje" =>
+                isset($datos["kilometraje"])
+                ? (float) $datos["kilometraje"]
+                : 0,
+
+            "estado" => trim(
+                (string) $datos["estado"]
+            )
         ];
 
-        $this->camiones[] = $nuevoCamion;
+        $_SESSION["camiones"][] = $nuevoCamion;
 
         return $nuevoCamion;
     }
@@ -100,31 +124,41 @@ class Camion
     /**
      * Actualiza un camión por su ID.
      */
-    public function actualizar(int $id, array $datos): ?array
-    {
-        foreach ($this->camiones as $indice => $camion) {
-            if ($camion["id"] === $id) {
-                $this->camiones[$indice] = [
+    public function actualizar(
+        int $id,
+        array $datos
+    ): ?array {
+        foreach (
+            $_SESSION["camiones"] as $indice => $camion
+        ) {
+            if ((int) $camion["id"] === $id) {
+                $_SESSION["camiones"][$indice] = [
                     "id" => $id,
+
                     "matricula" => strtoupper(
                         trim((string) $datos["matricula"])
                     ),
+
                     "marca" => trim(
                         (string) $datos["marca"]
                     ),
+
                     "modelo" => trim(
                         (string) $datos["modelo"]
                     ),
+
                     "capacidadCarga" =>
-                    (float) $datos["capacidadCarga"],
+                        (float) $datos["capacidadCarga"],
+
                     "kilometraje" =>
-                    (float) $datos["kilometraje"],
+                        (float) $datos["kilometraje"],
+
                     "estado" => trim(
                         (string) $datos["estado"]
                     )
                 ];
 
-                return $this->camiones[$indice];
+                return $_SESSION["camiones"][$indice];
             }
         }
 
@@ -136,11 +170,14 @@ class Camion
      */
     public function eliminar(int $id): bool
     {
-        foreach ($this->camiones as $indice => $camion) {
-            if ($camion["id"] === $id) {
-                unset($this->camiones[$indice]);
+        foreach (
+            $_SESSION["camiones"] as $indice => $camion
+        ) {
+            if ((int) $camion["id"] === $id) {
+                unset($_SESSION["camiones"][$indice]);
 
-                $this->camiones = array_values($this->camiones);
+                $_SESSION["camiones"] =
+                    array_values($_SESSION["camiones"]);
 
                 return true;
             }
@@ -154,8 +191,15 @@ class Camion
      */
     private function generarNuevoId(): int
     {
-        $ids = array_column($this->camiones, "id");
+        if (empty($_SESSION["camiones"])) {
+            return 1;
+        }
 
-        return empty($ids) ? 1 : max($ids) + 1;
+        $ids = array_column(
+            $_SESSION["camiones"],
+            "id"
+        );
+
+        return max($ids) + 1;
     }
 }
